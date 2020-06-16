@@ -1,3 +1,11 @@
+# Editor files
+*.swp
+
+# Python build files
+__pycache__/
+*.py[cod]
+*$py.class
+
 # Logs
 logs
 *.log

@@ -1,16 +1,21 @@
-/**
- * Layout component that queries for data
- * with Gatsby's useStaticQuery component
- *
- * See: https://www.gatsbyjs.org/docs/use-static-query/
- */
-
 import React from "react"
+import { MDXProvider } from "@mdx-js/react"
 import PropTypes from "prop-types"
-import { useStaticQuery, graphql } from "gatsby"
+import { useStaticQuery, graphql, Link } from "gatsby"
 
 import Header from "./header"
+import SEO from "./seo"
+import Citation from "./citation"
+import Solution from "./solution"
+
 import "./layout.css"
+
+const shortcodes = {
+  Link,
+  SEO,
+  Citation,
+  Solution,
+}
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
@@ -25,20 +30,13 @@ const Layout = ({ children }) => {
 
   return (
     <>
-      <Header siteTitle={data.site.siteMetadata.title} />
-      <div
-        style={{
-          margin: `0 auto`,
-          maxWidth: 960,
-          padding: `0 1.0875rem 1.45rem`,
-        }}
-      >
-        <main>{children}</main>
-        <footer>
-          © {new Date().getFullYear()}, Built with
-          {` `}
-          <a href="https://www.gatsbyjs.org">Gatsby</a>
-        </footer>
+      <Header title={data.site.siteMetadata.title} />
+      <div>
+        <main className="mdx">
+          {" "}
+          <MDXProvider components={shortcodes}> {children} </MDXProvider>{" "}
+        </main>{" "}
+        <footer> ©{new Date().getFullYear()} </footer>
       </div>
     </>
   )
