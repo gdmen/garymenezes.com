@@ -1,7 +1,6 @@
-# 2.2-2
 import unittest
 
-class TestSort(unittest.TestCase):
+class Test(unittest.TestCase):
 
     def test_empty(self):
         self.assertEqual(sort([]), [])
