@@ -1,4 +1,3 @@
-from collections import defaultdict
 from typing import List
 import unittest
 
@@ -7,13 +6,9 @@ class Test(unittest.TestCase):
     def setUp(self):
         self.s = Solution()
 
-    def test_example_1(self):
+    def test_examples(self):
         self.assertEqual(self.s.checkPossibility([4,2,3]), True)
-
-    def test_example_2(self):
         self.assertEqual(self.s.checkPossibility([4,2,1]), False)
-
-    def test_example_3(self):
         self.assertEqual(self.s.checkPossibility([1,4,5,3,2]), False)
 
     def test_empty(self):
