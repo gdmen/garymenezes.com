@@ -2,24 +2,25 @@ const remarkMath = require(`remark-math`)
 
 module.exports = {
   siteMetadata: {
-    title: `Gary's Notes`,
-    description: `Where Gary writes things he wants to remember.`,
     author: `Gary`,
+    description: `Where Gary writes things he wants to remember.`,
+    menu: ["blog", "notes", "experience", "projects"],
+    title: `GARY MENEZES`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        name: `pages`,
-        path: `${__dirname}/src/pages/`,
+        name: `blog`,
+        path: `${__dirname}/content`,
       },
     },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        name: `images`,
-        path: `${__dirname}/src/images`,
+        name: `assets`,
+        path: `${__dirname}/content/assets`,
       },
     },
     {
@@ -27,7 +28,7 @@ module.exports = {
       options: {
         extensions: [`.mdx`, `.md`],
         defaultLayouts: {
-          default: require.resolve("./src/components/layout.js"),
+          default: require.resolve("./src/templates/post.js"),
         },
         gatsbyRemarkPlugins: [
           `gatsby-remark-katex`,

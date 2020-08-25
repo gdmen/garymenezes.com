@@ -4,11 +4,12 @@
 @import "../../node_modules/prismjs/plugins/line-numbers/prism-line-numbers.css";
 
 :root {
+  --page-max-width: 1200px;
   --main-bg-color: white;
   --main-color: #303030;
-  --header-bg-color: #61b33b;
-  --header-color: white;
-  --header-font-family: "Georgia, Times, serif";
+  --primary-color: #0088cc;
+  --secondary-color: #f36c3d;
+  --header-font-family: Arial Black, sans-serif;
   --blockquote-accent-color: #FF0000;
 }
 
@@ -28,19 +29,8 @@ pre[class*="language-"] .line-numbers-rows {
 html {
   background-color: var(--main-bg-color);
   color: var(--main-color);
+  display: grid;
   font-family: Trebuchet, Verdana, sans-serif;
-}
-main {
-  margin: 0 auto;
-  max-width: 1200px;
-}
-header .header-content {
-  margin: 0 auto;
-  max-width: 1200px;
-}
-
-.mdx {
-  padding: 1em;
 }
 
 .mdx strong {
