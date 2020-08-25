@@ -3,7 +3,7 @@ import React from "react"
 
 let works = new Map([
   ["", "missing title"],
-  ["CLRS", "Introduction to Algorithms Second Edition"],
+  ["clrs", "Introduction to Algorithms Second Edition"],
 ])
 
 const Citation = ({ title, text }) => (

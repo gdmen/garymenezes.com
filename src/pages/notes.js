@@ -1,8 +1,9 @@
 import React from "react"
 import { graphql, Link } from "gatsby"
+import Img from "gatsby-image"
 import Layout from "../components/layout"
 
-export default function Blog({ data }) {
+export default function Notes({ data }) {
   return (
     <Layout>
       <h4
@@ -11,27 +12,27 @@ export default function Blog({ data }) {
           textAlign: "center",
         }}
       >
-        experiments, tutorials, and what I'm learning
+        Notes
       </h4>
       <section>
         <div
           style={{
             display: "grid",
+            gridTemplateColumns: "repeat(4, 1fr)",
           }}
         >
           {data.allMdx.edges.map(({ node }) => (
             <div key={node.id}>
-              <h4>
-                <Link
-                  to={node.fields.slug}
-                  style={{
-                    color: "var(--text-color)",
-                    textDecoration: "none",
-                  }}
-                >
-                  {node.frontmatter.title}
-                </Link>
-              </h4>
+              <Link
+                to={node.fields.slug}
+                style={{
+                  color: "var(--text-color)",
+                  textDecoration: "none",
+                }}
+              >
+                <div>{node.frontmatter.title}</div>
+                <Img fluid={node.frontmatter.image.childImageSharp.fluid} />
+              </Link>
             </div>
           ))}
         </div>
@@ -42,20 +43,24 @@ export default function Blog({ data }) {
 
 export const query = graphql`
   query {
-    allMdx(
-      sort: { fields: [frontmatter___date], order: DESC }
-      filter: { fields: { type: { eq: "post" } } }
-    ) {
+    allMdx(filter: { fields: { type: { eq: "book" } } }) {
       totalCount
       edges {
         node {
           id
           fields {
+            book
             slug
           }
           frontmatter {
-            date(formatString: "DD MMMM, YYYY")
             title
+            image {
+              childImageSharp {
+                fluid(maxWidth: 800) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
           }
         }
       }

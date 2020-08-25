@@ -4,13 +4,14 @@ import { graphql } from "gatsby"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 
-export default function Post({ data }) {
-  const note = data.mdx
+export default function Page({ data }) {
+  const page = data.mdx
   return (
     <Layout>
-      <SEO title={note.frontmatter.title} />
+      <SEO title={page.frontmatter.title} />
+      <div>{page.frontmatter.date}</div>
       <div className="mdx">
-        <MDXRenderer>{note.body}</MDXRenderer>
+        <MDXRenderer>{page.body}</MDXRenderer>
       </div>
     </Layout>
   )

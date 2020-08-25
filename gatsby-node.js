@@ -3,14 +3,24 @@ const { createFilePath } = require(`gatsby-source-filesystem`)
 
 exports.onCreateNode = ({ node, getNode, actions }) => {
   const { createNodeField } = actions
-  const templates = {
-    blog: "post",
-    notes: "note",
-  }
   if (node.internal.type === "Mdx") {
     const fileNode = getNode(node.parent)
     const slug = createFilePath({ node, getNode })
-    const template = templates[slug.split("/")[1]]
+    const splitSlug = slug.split("/").filter(i => i)
+    let type = "page"
+    if (splitSlug[0] === "blog") {
+      type = "post"
+    } else if (splitSlug[0] === "notes") {
+      type = "note"
+      createNodeField({
+        node,
+        name: `book`,
+        value: splitSlug[1],
+      })
+      if (splitSlug.length === 2) {
+        type = "book"
+      }
+    }
     createNodeField({
       node,
       name: `slug`,
@@ -18,14 +28,19 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
     })
     createNodeField({
       node,
-      name: `template`,
-      value: template,
+      name: `type`,
+      value: type,
     })
   }
 }
 
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
+  const templates = {
+    post: "post",
+    note: "note",
+    book: "page",
+  }
   const result = await graphql(`
     query {
       allMdx {
@@ -33,7 +48,7 @@ exports.createPages = async ({ graphql, actions }) => {
           node {
             fields {
               slug
-              template
+              type
             }
           }
         }
@@ -44,11 +59,9 @@ exports.createPages = async ({ graphql, actions }) => {
     createPage({
       path: node.fields.slug,
       component: path.resolve(
-        "./src/templates/" + node.fields.template + ".js"
+        "./src/templates/" + templates[node.fields.type] + ".js"
       ),
       context: {
-        // Data passed to context is available
-        // in page queries as GraphQL variables.
         slug: node.fields.slug,
       },
     })
