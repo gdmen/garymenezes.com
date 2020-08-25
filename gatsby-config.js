@@ -28,7 +28,7 @@ module.exports = {
       options: {
         extensions: [`.mdx`, `.md`],
         defaultLayouts: {
-          default: require.resolve("./src/templates/post.js"),
+          default: require.resolve("./src/components/layout.js"),
         },
         gatsbyRemarkPlugins: [
           `gatsby-remark-katex`,
