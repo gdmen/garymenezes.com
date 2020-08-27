@@ -5,13 +5,12 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 
 export default function Page({ data }) {
-  const page = data.mdx
+  const node = data.mdx
   return (
     <Layout>
-      <SEO title={page.frontmatter.title} />
-      <div>{page.frontmatter.date}</div>
+      <SEO title={node.frontmatter.title} />
       <div className="mdx">
-        <MDXRenderer>{page.body}</MDXRenderer>
+        <MDXRenderer frontmatter={node.frontmatter}>{node.body}</MDXRenderer>
       </div>
     </Layout>
   )

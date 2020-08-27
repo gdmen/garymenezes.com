@@ -36,11 +36,6 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
 
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
-  const templates = {
-    post: "post",
-    note: "note",
-    book: "page",
-  }
   const result = await graphql(`
     query {
       allMdx {
@@ -49,20 +44,42 @@ exports.createPages = async ({ graphql, actions }) => {
             fields {
               slug
               type
+              book
             }
           }
         }
       }
     }
   `)
-  result.data.allMdx.edges.forEach(({ node }) => {
+  const edges = result.data.allMdx.edges
+  const pages = edges.filter(e => e.node.fields.type === "page")
+  const posts = edges.filter(e => e.node.fields.type === "post")
+  const notes = edges.filter(e => ["note", "book"].includes(e.node.fields.type))
+  pages.forEach(({ node }) => {
     createPage({
       path: node.fields.slug,
-      component: path.resolve(
-        "./src/templates/" + templates[node.fields.type] + ".js"
-      ),
+      component: path.resolve("./src/templates/page.js"),
       context: {
         slug: node.fields.slug,
+      },
+    })
+  })
+  posts.forEach(({ node }) => {
+    createPage({
+      path: node.fields.slug,
+      component: path.resolve("./src/templates/post.js"),
+      context: {
+        slug: node.fields.slug,
+      },
+    })
+  })
+  notes.forEach(({ node }) => {
+    createPage({
+      path: node.fields.slug,
+      component: path.resolve("./src/templates/note.js"),
+      context: {
+        slug: node.fields.slug,
+        book: node.fields.book,
       },
     })
   })

@@ -3,25 +3,46 @@ import { MDXRenderer } from "gatsby-plugin-mdx"
 import { graphql } from "gatsby"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+import BookTOC from "../components/book_toc"
 
-export default function Post({ data }) {
-  const note = data.mdx
+export default function Note({ data }) {
   return (
     <Layout>
-      <SEO title={note.frontmatter.title} />
+      <SEO title={data.mdx.frontmatter.title} />
+      <BookTOC edges={data.allMdx.edges} />
       <div className="mdx">
-        <MDXRenderer>{note.body}</MDXRenderer>
+        <MDXRenderer frontmatter={data.mdx.frontmatter}>
+          {data.mdx.body}
+        </MDXRenderer>
       </div>
     </Layout>
   )
 }
 
 export const query = graphql`
-  query($slug: String!) {
+  query($slug: String!, $book: String!) {
     mdx(fields: { slug: { eq: $slug } }) {
       body
       frontmatter {
         title
+        authors
+      }
+    }
+    allMdx(
+      filter: {
+        fields: { type: { in: ["note", "book"] }, book: { eq: $book } }
+      }
+    ) {
+      edges {
+        node {
+          id
+          fields {
+            slug
+          }
+          frontmatter {
+            title
+          }
+        }
       }
     }
   }
