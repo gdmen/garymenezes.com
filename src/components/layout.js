@@ -5,13 +5,11 @@ import PropTypes from "prop-types"
 import { MDXProvider } from "@mdx-js/react"
 
 import Citation from "./citation"
-import Solution from "./solution"
 
 import "./layout.css"
 
 const shortcodes = {
   Citation,
-  Solution,
 }
 
 const Layout = ({ children }) => {

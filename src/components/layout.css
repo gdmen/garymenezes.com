@@ -109,38 +109,3 @@ ul {
 li {
   word-wrap: break-all;
 }
-
-/* Solution component */
-.solution {
-  overflow: hidden;
-  width: 100%;
-}
-.solution label {
-  cursor: pointer;
-  display: flex;
-  justify-content: flex-start;
-}
-.solution label::before {
-  content: "\276F";
-  height: 1em;
-  text-align: center;
-  transition: all .35s;
-  width: 1em;
-}
-.solution label .text {
-  padding-left: 0.5em;
-}
-.solution input {
-  display: none;
-}
-.solution input:checked + label::before {
-  transform: rotate(90deg);
-}
-.solution input:checked ~ .contents {
-  display: block;
-}
-.solution .contents {
-  display: none;
-  padding: 0 1em;
-  transition: all .35s;
-}
