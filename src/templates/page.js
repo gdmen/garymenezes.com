@@ -9,7 +9,7 @@ export default function Page({ data }) {
   return (
     <Layout>
       <SEO title={node.frontmatter.title} />
-      <div className="mdx">
+      <div>
         <MDXRenderer frontmatter={node.frontmatter}>{node.body}</MDXRenderer>
       </div>
     </Layout>

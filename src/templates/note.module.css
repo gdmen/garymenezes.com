@@ -1,0 +1,17 @@
+.title {
+  color: var(--secondary-text-color);
+}
+.book {
+  display: flex;
+  flex-wrap: wrap;
+}
+.toc {
+  flex-basis: 15em;
+  flex-grow: 1;
+}
+.note {
+  flex-basis: 0;
+  flex-grow: 99;
+  margin: 0 1em;
+  min-width: 60%;
+}

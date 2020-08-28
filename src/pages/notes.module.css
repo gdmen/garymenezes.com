@@ -1,0 +1,29 @@
+.book_list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  list-style: none;
+}
+.book {
+  flex-basis: 10em;
+}
+.book a {
+  color: var(--text-color);
+  text-decoration: none;
+}
+.cover {
+  border: 1px solid var(--secondary-text-color);
+  border-bottom: none;
+  border-radius: 0.25em 0.25em 0 0;
+  height: 13.5em;
+  width: 12em;
+}
+.title {
+  border: 1px solid var(--secondary-text-color);
+  border-radius: 0 0 0.25em 0.25em;
+  display: block;
+  font-family: var(--header-font-family);
+  font-weight: normal;
+  padding: 0.5em 0.25em;
+  text-align: center;
+}

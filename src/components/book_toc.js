@@ -1,13 +1,16 @@
 import React from "react"
 import { Link } from "gatsby"
 
+import styles from "./book_toc.module.css"
+
 export default function BookTOC({ edges }) {
   return (
-    <div>
-      <h4>BookTOC</h4>
+    <div className={styles.toc}>
       {edges.map(({ node }) => (
-        <div key={node.id}>
-          <Link to={node.fields.slug}>{node.frontmatter.title}</Link>
+        <div className={styles.note} key={node.id}>
+          <Link className={styles.link} to={node.fields.slug}>
+            {node.frontmatter.title}
+          </Link>
         </div>
       ))}
     </div>

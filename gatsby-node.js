@@ -17,9 +17,17 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
         name: `book`,
         value: splitSlug[1],
       })
+      let order = 0
       if (splitSlug.length === 2) {
         type = "book"
+      } else {
+        order = parseInt(splitSlug[2])
       }
+      createNodeField({
+        node,
+        name: `order`,
+        value: order,
+      })
     }
     createNodeField({
       node,

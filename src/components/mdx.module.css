@@ -1,0 +1,37 @@
+.mdx blockquote,
+.mdx details,
+.mdx dl,
+.mdx ol,
+.mdx p,
+.mdx pre,
+.mdx table,
+.mdx ul {
+  line-height: 1.25em;
+  margin-bottom: 1em;
+}
+.mdx blockquote {
+  border-left: .25em solid var(--blockquote-accent-color);
+  padding: 0 1em;
+}
+.mdx blockquote>* {
+  margin: 0.5em 0;
+}
+.mdx blockquote>:first-child {
+  margin-top: 0;
+}
+.mdx blockquote>:last-child {
+  margin-bottom: 0;
+}
+.mdx blockquote>footer {
+  color: var(--blockquote-accent-color);
+  filter: opacity(50%);
+  font-size: 0.75em;
+  font-style: italic;
+}
+.mdx ul {
+  list-style: disc outside none;
+  padding-left: 1.2em;
+}
+.mdx li {
+  word-wrap: break-all;
+}

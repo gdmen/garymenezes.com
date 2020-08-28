@@ -6,9 +6,11 @@
 :root {
   --page-max-width: 1200px;
   --bg-color: white;
-  --text-color: #303030;
+  --text-color: #505050;
+  --secondary-text-color: #9d9d9d;
+  --hover-color: #eeeeee;
   --primary-color: #0088cc;
-  --secondary-color: #f78a66;/*#f36c3d;*/
+  --accent-color: #f78a66;/*#f36c3d;*/
   --header-font-family: Arial Black, sans-serif;
   --blockquote-accent-color: #FF0000;
 }
@@ -69,43 +71,4 @@ h5 {
 }
 h6 {
   font-size: 0.85em;
-}
-blockquote,
-details,
-dl,
-ol,
-p,
-pre,
-table,
-ul {
-  line-height: 1.25em;
-  margin-bottom: 1em;
-}
-blockquote {
-  border-left: .25em solid var(--blockquote-accent-color);
-  padding: 0 1em;
-}
-blockquote>* {
-  margin: 0.5em 0;
-}
-blockquote>:first-child {
-  margin-top: 0;
-}
-blockquote>:last-child {
-  margin-bottom: 0;
-}
-blockquote>footer {
-  color: var(--blockquote-accent-color);
-  filter: opacity(50%);
-  font-size: 0.75em;
-  font-style: italic;
-}
-
-ul {
-  list-style: disc outside none;
-  padding-left: 1.2em;
-}
-
-li {
-  word-wrap: break-all;
 }
