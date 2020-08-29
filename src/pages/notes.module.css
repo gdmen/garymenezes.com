@@ -4,26 +4,34 @@
   justify-content: space-evenly;
   list-style: none;
 }
-.book {
+.book_list li {
   flex-basis: 10em;
 }
-.book a {
+.book {
   color: var(--text-color);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
   text-decoration: none;
 }
 .cover {
   border: 1px solid var(--secondary-text-color);
   border-bottom: none;
   border-radius: 0.25em 0.25em 0 0;
-  height: 13.5em;
+  flex-basis: 13.5em;
+  flex-grow: 1;
   width: 12em;
 }
 .title {
+  align-items: center;
   border: 1px solid var(--secondary-text-color);
   border-radius: 0 0 0.25em 0.25em;
-  display: block;
+  display: flex;
+  flex-basis: 0;
+  flex-grow: 99;
   font-family: var(--header-font-family);
   font-weight: normal;
+  justify-content: center;
   padding: 0.5em 0.25em;
   text-align: center;
 }

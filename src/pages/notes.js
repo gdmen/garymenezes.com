@@ -11,13 +11,15 @@ export default function Notes({ data }) {
       <section>
         <ul className={styles.book_list}>
           {data.allMdx.edges.map(({ node }) => (
-            <li className={styles.book} key={node.id}>
-              <Link to={node.fields.slug}>
+            <li key={node.id}>
+              <Link className={styles.book} to={node.fields.slug}>
                 <Img
                   className={styles.cover}
                   fluid={node.frontmatter.image.childImageSharp.fluid}
                 />
-                <span className={styles.title}>{node.frontmatter.title}</span>
+                <div className={styles.title}>
+                  <span>{node.frontmatter.title}</span>
+                </div>
               </Link>
             </li>
           ))}
