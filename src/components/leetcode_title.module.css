@@ -1,0 +1,26 @@
+.heading {
+  border-bottom: 1px solid var(--secondary-color);
+  margin-bottom: 1em;
+}
+.title {
+}
+.link {
+  margin-left: 2em;
+}
+.link a {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+.date {
+  margin-left: 1em;
+}
+.link,
+.date {
+  font-size: 0.75em;
+}
+.link i,
+.date i {
+  font-size: 1.125em;
+  margin-right: 0.25em;
+  padding-bottom: 0.075em;
+}

@@ -15,6 +15,44 @@
   --blockquote-accent-color: #FF0000;
 }
 
+/* Material Design Icons */
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url(../../content/assets/material-design-icons-3.0.2/MaterialIcons-Regular.eot); /* For IE6-8 */
+  src: local('Material Icons'),
+    local('MaterialIcons-Regular'),
+    url(../../content/assets/material-design-icons-3.0.2/MaterialIcons-Regular.woff2) format('woff2'),
+    url(../../content/assets/material-design-icons-3.0.2/MaterialIcons-Regular.woff) format('woff'),
+    url(../../content/assets/material-design-icons-3.0.2/MaterialIcons-Regular.ttf) format('truetype');
+}
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 1em;
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+  vertical-align: middle;
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: 'liga';
+}
+
 /* Prismjs overrides */
 pre[class*="language-"]:before,
 pre[class*="language-"]:after {
@@ -28,11 +66,15 @@ pre[class*="language-"] .line-numbers-rows {
   padding-left: 2em;
 }
 
+/* garymenezes.com */
 html {
   background-color: var(--bg-color);
   color: var(--text-color);
   display: grid;
   font-family: Trebuchet, Verdana, sans-serif;
+}
+body {
+  overflow: auto;
 }
 
 strong {
@@ -71,4 +113,14 @@ h5 {
 }
 h6 {
   font-size: 0.85em;
+}
+
+header {
+  color: var(--primary-color);
+  font-family: var(--header-font-family);
+  padding: 1em 0 3em;
+}
+main {
+  margin: 0 auto;
+  max-width: min(100%, var(--page-max-width));
 }

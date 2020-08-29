@@ -28,6 +28,9 @@
   font-size: 0.75em;
   font-style: italic;
 }
+.mdx pre {
+  overflow-x: scroll;
+}
 .mdx ul {
   list-style: disc outside none;
   padding-left: 1.2em;

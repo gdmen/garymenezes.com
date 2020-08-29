@@ -31,8 +31,10 @@ export const query = graphql`
     mdx(fields: { slug: { eq: $slug } }) {
       body
       frontmatter {
-        title
         authors
+        date(formatString: "MMMM D, YYYY")
+        title
+        url
       }
     }
     allMdx(

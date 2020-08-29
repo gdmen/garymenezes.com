@@ -6,6 +6,7 @@
 }
 .book_list li {
   flex-basis: 10em;
+  padding-bottom: 1.5em;
 }
 .book {
   color: var(--text-color);

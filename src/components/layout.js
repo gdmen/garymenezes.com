@@ -5,11 +5,13 @@ import PropTypes from "prop-types"
 import { MDXProvider } from "@mdx-js/react"
 
 import Citation from "./citation"
+import LeetCodeHeading from "./leetcode_title"
 
 import "./layout.css"
 
-const shortcodes = {
+const mdx_shortcodess = {
   Citation,
+  LeetCodeHeading,
 }
 
 const Layout = ({ children }) => {
@@ -25,13 +27,7 @@ const Layout = ({ children }) => {
   `)
   return (
     <>
-      <header
-        style={{
-          color: "var(--primary-color)",
-          fontFamily: "var(--header-font-family)",
-          padding: "1em 0 3em",
-        }}
-      >
+      <header>
         <div
           className="header-content"
           style={{
@@ -79,13 +75,8 @@ const Layout = ({ children }) => {
           </div>
         </div>
       </header>
-      <main
-        style={{
-          margin: "0 auto",
-          maxWidth: "var(--page-max-width)",
-        }}
-      >
-        <MDXProvider components={shortcodes}>{children}</MDXProvider>
+      <main>
+        <MDXProvider components={mdx_shortcodess}>{children}</MDXProvider>
       </main>
     </>
   )
