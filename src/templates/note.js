@@ -53,6 +53,7 @@ export const query = graphql`
             type
           }
           frontmatter {
+            number
             title
           }
         }

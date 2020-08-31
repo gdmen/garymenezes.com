@@ -9,6 +9,7 @@ export default function BookTOC({ edges }) {
       {edges.map(({ node }) => (
         <div className={styles.note} key={node.id}>
           <Link className={styles.link} to={node.fields.slug}>
+            {node.frontmatter.number !== 0 && node.frontmatter.number + "."}{" "}
             {node.frontmatter.title}
           </Link>
         </div>
