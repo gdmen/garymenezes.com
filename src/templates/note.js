@@ -33,12 +33,14 @@ export const query = graphql`
       frontmatter {
         authors
         date(formatString: "MMMM D, YYYY")
+        difficulty
+        number
         title
         url
       }
     }
     allMdx(
-      sort: { fields: [fields___order], order: ASC }
+      sort: { fields: [frontmatter___number], order: ASC }
       filter: {
         fields: { type: { in: ["note", "book"] }, book: { eq: $book } }
       }

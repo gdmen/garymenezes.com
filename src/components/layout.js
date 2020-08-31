@@ -5,7 +5,7 @@ import PropTypes from "prop-types"
 import { MDXProvider } from "@mdx-js/react"
 
 import Citation from "./citation"
-import LeetCodeHeading from "./leetcode_title"
+import LeetCodeHeading from "./leetcode_heading"
 
 import "./layout.css"
 
