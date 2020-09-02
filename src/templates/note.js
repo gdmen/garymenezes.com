@@ -6,7 +6,6 @@ import SEO from "../components/seo"
 import BookTOC from "../components/book_toc"
 
 import styles from "./note.module.css"
-import mdxstyle from "../components/mdx.module.css"
 
 export default function Note({ data }) {
   return (
@@ -16,7 +15,7 @@ export default function Note({ data }) {
         <div className={styles.toc}>
           <BookTOC edges={data.allMdx.edges} />
         </div>
-        <div className={`${styles.note} ${mdxstyle.mdx}`}>
+        <div className={`${styles.note} mdx`}>
           <MDXRenderer frontmatter={data.mdx.frontmatter}>
             {data.mdx.body}
           </MDXRenderer>
