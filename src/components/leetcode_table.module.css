@@ -1,0 +1,15 @@
+.table {
+  margin: 0 auto;
+}
+.easy {
+  color: #2f9c0a;
+  /*color: #77dd77;*/
+}
+.medium {
+  color: #e69e39;
+  /*color: #ffb347;*/
+}
+.hard {
+  color: #c92c2c;
+  /*color: #ff6961;*/
+}

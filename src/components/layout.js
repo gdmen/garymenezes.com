@@ -6,12 +6,15 @@ import { MDXProvider } from "@mdx-js/react"
 
 import Citation from "./citation"
 import LeetCodeHeading from "./leetcode_heading"
+import LeetCodeTable from "./leetcode_table"
 
 import "./layout.css"
 
 const mdx_shortcodess = {
   Citation,
   LeetCodeHeading,
+  LeetCodeTable,
+  Link,
 }
 
 const Layout = ({ children }) => {
