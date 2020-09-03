@@ -1,0 +1,20 @@
+.content {
+  margin: 0 auto;
+  max-width: var(--page-max-width);
+  overflow: auto;
+}
+.title {
+  color: var(--primary-color);
+  float: left;
+  font-size: 2em;
+  height: 100%;
+  text-decoration: none;
+}
+.menu {
+  float: right;
+}
+.link {
+  color: var(--primary-color);
+  margin: 0 1em;
+  text-decoration: none;
+}
