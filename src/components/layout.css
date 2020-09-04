@@ -12,6 +12,7 @@
   --primary-color: #0088cc;
   --accent-color: #f78a66;/*#f36c3d;*/
   --header-font-family: Arial Black, sans-serif;
+  --body-font-family: Trebuchet, Verdana, sans-serif;
   --blockquote-accent-color: #FF0000;
 }
 
@@ -71,7 +72,7 @@ html {
   background-color: var(--bg-color);
   color: var(--text-color);
   display: grid;
-  font-family: Trebuchet, Verdana, sans-serif;
+  font-family: var(--body-font-family);
 }
 body {
   overflow: auto;

@@ -1,17 +1,26 @@
+.header {
+  font-family: var(--header-font-family);
+  margin-bottom: 2em;
+}
 .content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
   margin: 0 auto;
   max-width: var(--page-max-width);
-  overflow: auto;
+  overflow: visible;
 }
 .title {
   color: var(--primary-color);
-  float: left;
-  font-size: 2em;
+  font-family: "Architects Daughter", cursive;
+  font-size: 3em;
   height: 100%;
+  text-align: center;
   text-decoration: none;
+  white-space: nowrap;
 }
 .menu {
-  float: right;
+  text-align: center;
 }
 .link {
   color: var(--primary-color);

@@ -6,17 +6,19 @@ import styles from "./header.module.css"
 
 const Header = ({ metadata }) => {
   return (
-    <header>
+    <header className={styles.header}>
       <div className={styles.content}>
         <Link to="/" className={styles.title}>
-          {metadata.title}
+          {metadata.title.join(" ")}
         </Link>
         <div className={styles.menu}>
-          {metadata.menu.map(link => (
-            <Link key={link} to={"/" + link} className={styles.link}>
-              {link}
-            </Link>
-          ))}
+          <div className={styles.links}>
+            {metadata.menu.map(link => (
+              <Link key={link} to={"/" + link} className={styles.link}>
+                {link}
+              </Link>
+            ))}
+          </div>
         </div>
       </div>
     </header>

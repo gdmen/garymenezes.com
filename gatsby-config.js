@@ -5,10 +5,12 @@ module.exports = {
     author: `Gary`,
     description: `Where Gary writes things he wants to remember.`,
     menu: ["blog", "notes", "experience", "projects"],
-    title: `GARY MENEZES`,
+    title: [`Gary`, `Menezes`],
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-sharp`,
+    `gatsby-transformer-sharp`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -36,7 +38,16 @@ module.exports = {
         remarkPlugins: [remarkMath],
       },
     },
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
+    {
+      resolve: `gatsby-plugin-prefetch-google-fonts`,
+      options: {
+        fonts: [
+          {
+            family: `Architects Daughter`,
+            variants: [`400`, `700`],
+          },
+        ],
+      },
+    },
   ],
 }
