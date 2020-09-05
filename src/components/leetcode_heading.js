@@ -1,6 +1,8 @@
 import React from "react"
 import PropTypes from "prop-types"
 
+import LinkOut from "./link_out"
+
 import styles from "./leetcode_heading.module.css"
 
 const difficultyText = { 0: "easy", 1: "medium", 2: "hard" }
@@ -29,9 +31,7 @@ const LeetCodeHeading = ({ date, difficulty, number, title, url }) => (
     </span>
     <span className={styles.link}>
       <i className="material-icons">open_in_new</i>
-      <a href={url} target="_blank" rel="noopener noreferrer">
-        This problem on LeetCode
-      </a>
+      <LinkOut to={url}>This problem on LeetCode</LinkOut>
     </span>
   </div>
 )
