@@ -3,12 +3,13 @@
 @import "../../node_modules/prismjs/themes/prism-coy.css";
 @import "../../node_modules/prismjs/plugins/line-numbers/prism-line-numbers.css";
 
+@import "mdx.css";
+
 :root {
   --page-max-width: 1200px;
   --bg-color: white;
   --text-color: #505050;
   --secondary-text-color: #9d9d9d;
-  --hover-color: #eeeeee;
   --primary-color: #0088cc;
   --accent-color: #f78a66;/*#f36c3d;*/
   --header-font-family: Arial Black, sans-serif;
@@ -91,14 +92,10 @@ h4,
 h5,
 h6 {
   font-weight: bolder;
-  padding-bottom: 0.5em;
-}
-h1,
-h2 {
-  padding-top: 0.5em;
+  line-height: 1.2;
 }
 h1 {
-  font-size: 2em;
+  font-size: 3em;
 }
 h2 {
   font-size: 1.75em;
@@ -119,9 +116,12 @@ h6 {
 header {
   color: var(--primary-color);
   font-family: var(--header-font-family);
-  padding: 1em 0 3em;
+  padding: 1em;
+  padding-top: 1em;
+  padding-bottom: 2em;
 }
 main {
   margin: 0 auto;
+  padding: 0 1em;
   max-width: min(100%, var(--page-max-width));
 }

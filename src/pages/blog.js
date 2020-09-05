@@ -44,7 +44,10 @@ export const query = graphql`
   query {
     allMdx(
       sort: { fields: [frontmatter___date], order: DESC }
-      filter: { fields: { type: { eq: "post" } } }
+      filter: {
+        fields: { type: { eq: "post" } }
+        frontmatter: { draft: { eq: false } }
+      }
     ) {
       totalCount
       edges {
