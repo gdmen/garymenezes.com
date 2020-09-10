@@ -10,6 +10,11 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
     let type = "page"
     if (splitSlug[0] === "blog") {
       type = "post"
+    } else if (splitSlug[0] === "about") {
+      type = "about"
+      if (splitSlug[1] === "employment") {
+        type = "employment"
+      }
     } else if (splitSlug[0] === "notes") {
       type = "note"
       createNodeField({
@@ -19,6 +24,10 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
       })
       if (splitSlug.length === 2) {
         type = "book"
+      }
+    } else if (splitSlug[0] === "assets") {
+      if (splitSlug[1] === "people") {
+        type = "person"
       }
     }
     createNodeField({

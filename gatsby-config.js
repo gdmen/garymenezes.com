@@ -4,7 +4,7 @@ module.exports = {
   siteMetadata: {
     author: `Gary`,
     description: `Where Gary writes things he wants to remember.`,
-    menu: ["blog", "notes", "experience", "projects"],
+    menu: ["blog", "notes", "projects", "about"],
     title: [`Gary`, `Menezes`],
   },
   plugins: [

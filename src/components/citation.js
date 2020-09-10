@@ -17,9 +17,4 @@ Citation.propTypes = {
   text: PropTypes.string.isRequired,
 }
 
-Citation.defaultProps = {
-  title: ``,
-  text: ``,
-}
-
 export default Citation

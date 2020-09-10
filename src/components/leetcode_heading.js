@@ -44,12 +44,4 @@ LeetCodeHeading.propTypes = {
   url: PropTypes.string.isRequired,
 }
 
-LeetCodeHeading.defaultProps = {
-  date: ``,
-  difficulty: 0,
-  number: 0,
-  title: ``,
-  url: ``,
-}
-
 export default LeetCodeHeading

@@ -5,7 +5,7 @@ import Layout from "../components/layout"
 export default function Index({ data }) {
   return (
     <Layout>
-      <h1>Problems</h1>
+      <h1>All Pages</h1>
       {data.allMdx.edges.map(({ node }) => (
         <div key={node.id}>
           <Link to={node.fields.slug}>{node.frontmatter.title}</Link>

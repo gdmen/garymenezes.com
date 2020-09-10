@@ -1,0 +1,124 @@
+:root {
+  --author-size: 4em;
+  --hl-author-x: 2em;
+  --hs-border-width: 0.2em;
+}
+.quotation {
+  align-items: flex-start;
+  display: none;
+  flex-wrap: wrap;
+  justify-content: center;
+  line-height: 1.25em;
+}
+.highlight {
+  display: flex;
+}
+.highlight .author {
+  font-size: var(--hl-author-x);
+}
+.author {
+  flex-basis: var(--author-size);
+  height: var(--author-size);
+  margin-top: 0.25em;
+  position: relative;
+  width: var(--author-size);
+}
+.headshot {
+  align-items: center;
+  border: var(--hs-border-width) solid var(--linkedin-blue);
+  border-radius: 50%;
+  display: flex;
+  height: calc(100% - 0.2em);
+  justify-content: center;
+  overflow: hidden;
+  text-align: center;
+  width: calc(100% - 0.2em);
+}
+.highlight .headshot {
+  border-width: calc(var(--hs-border-width) / var(--hl-author-x))
+}
+.linkedin {
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+.linkedin a {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+.linkedin span {
+  bottom: 0.2em;
+  height: 1em;
+  line-height: 1em;
+  position: absolute;
+  right: 0.2em;
+  vertical-align: top;
+  width: 1em;
+}
+.linkedin i:first-child {
+  color: white;
+  font-size: 0.875em;
+  margin-top: 0.05em;
+}
+.linkedin i {
+  color: var(--linkedin-blue);
+}
+.image {
+  width: var(--author-size);
+}
+.anonymous {
+  font-size: calc(1.3 * var(--author-size));
+  margin-bottom: -0.075em;
+  opacity: 0.4;
+}
+.content {
+  flex-basis: 70%;
+  flex-grow: 99;
+}
+.text {
+  padding: 1em;
+  position: relative;
+}
+.highlight .text {
+  text-indent: 1.5em;
+}
+.text i {
+  color: var(--secondary-text-color);
+  font-size: 1.5em;
+  opacity: 0.4;
+  text-indent: 0;
+}
+.text i:first-child {
+  left: 0;
+  position: absolute;
+  top: 0.25em;
+}
+.text i:last-child {
+  bottom: 0.5em;
+  position: absolute;
+  right: 0;
+}
+.text p:not(:last-of-type) {
+  margin-bottom: 0.5em;
+}
+.citation {
+  text-align: right;
+  padding-right: 2em;
+}
+.context, .name {
+  font-size: 0.8em;
+}
+.context {
+  color: var(--secondary-text-color);
+}
+.context::before {
+  content: "- "
+}
+.context::after {
+  content: " ";
+}
+.name {
+}

@@ -7,6 +7,7 @@
 
 :root {
   --page-max-width: 1200px;
+  --page-min-width: 900px;
   --bg-color: white;
   --text-color: #505050;
   --secondary-text-color: #9d9d9d;
@@ -15,7 +16,13 @@
   --header-font-family: Arial Black, sans-serif;
   --body-font-family: Trebuchet, Verdana, sans-serif;
   --blockquote-accent-color: #FF0000;
+  --linkedin-blue: #0072b1;
 }
+
+/* Font Awesome */
+@import "../../node_modules/@fortawesome/fontawesome-free/css/fontawesome.min.css";
+@import "../../node_modules/@fortawesome/fontawesome-free/css/brands.min.css";
+@import "../../node_modules/@fortawesome/fontawesome-free/css/solid.min.css";
 
 /* Material Design Icons */
 @font-face {
@@ -124,4 +131,11 @@ main {
   margin: 0 auto;
   padding: 0 1em;
   max-width: min(100%, var(--page-max-width));
+}
+a {
+  color: var(--text-color);
+  text-decoration: none;
+}
+a:hover {
+  color: var(--primary-color);
 }

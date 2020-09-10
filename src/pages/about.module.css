@@ -1,0 +1,4 @@
+.employment_list {
+  max-width: var(--page-min-width);
+  margin: 0 auto;
+}
