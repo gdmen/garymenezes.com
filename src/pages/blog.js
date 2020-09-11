@@ -7,7 +7,6 @@ export default function Blog({ data }) {
     <Layout>
       <h4
         style={{
-          filter: "opacity(25%)",
           textAlign: "center",
         }}
       >

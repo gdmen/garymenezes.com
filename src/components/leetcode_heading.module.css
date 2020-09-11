@@ -10,16 +10,13 @@
   text-transform: uppercase;
 }
 .easy {
-  color: #2f9c0a;
-  /*color: #77dd77;*/
+  color: var(--leetcode-easy);
 }
 .medium {
-  color: #e69e39;
-  /*color: #ffb347;*/
+  color: var(--leetcode-medium);
 }
 .hard {
-  color: #c92c2c;
-  /*color: #ff6961;*/
+  color: var(--leetcode-hard);
 }
 .date,
 .link {

@@ -29,6 +29,6 @@
 }
 .line {
   background-color: var(--secondary-text-color);
-  opacity: 0.3;
   height: 1px;
+  opacity: 0.5;
 }

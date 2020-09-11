@@ -1,3 +1,7 @@
+:root {
+  --series-blue: #4285f4;
+  --series-red: #ea4335;
+}
 .mdx h1,
 .mdx h2,
 .mdx h3,
@@ -54,9 +58,9 @@
 }
 .mdx blockquote>footer {
   color: var(--blockquote-accent-color);
-  filter: opacity(50%);
   font-size: 0.75em;
   font-style: italic;
+  opacity: 0.5;
 }
 .mdx pre {
   overflow-x: scroll;
@@ -86,10 +90,10 @@
   word-wrap: break-all;
 }
 .mdx .series-blue {
-  color: #4285f4;
+  color: var(--series-blue);
 }
 .mdx .series-red {
-  color: #ea4335;
+  color: var(--series-red);
 }
 .mdx .text-center {
   text-align: center;
