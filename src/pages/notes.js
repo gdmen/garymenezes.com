@@ -13,10 +13,12 @@ export default function Notes({ data }) {
           {data.allMdx.edges.map(({ node }) => (
             <li key={node.id}>
               <Link className={styles.book} to={node.fields.slug}>
-                <Img
-                  className={styles.cover}
-                  fluid={node.frontmatter.image.childImageSharp.fluid}
-                />
+                {node.frontmatter.image && (
+                  <Img
+                    className={styles.cover}
+                    fluid={node.frontmatter.image.childImageSharp.fluid}
+                  />
+                )}
                 <div className={styles.title}>
                   <span>{node.frontmatter.title}</span>
                 </div>
