@@ -68,17 +68,18 @@
 .mdx table {
   display: table;
   font-size: 0.85em;
-}
-.mdx table th {
-  font-size: 1.25em;
+  text-align: left;
 }
 .mdx table th,
 .mdx table td {
-  border: 1px solid var(--secondary-text-color);
+  border: 1px solid var(--secondary-bg-color);
+  border-left: none;
+  border-right: none;
   padding: 0.25em 0.75em;
 }
-.mdx table td {
-  text-align: right;
+.mdx table th {
+  border-top: none;
+  font-size: 1.25em;
 }
 .mdx ul {
   list-style: disc inside none;

@@ -2,11 +2,19 @@
   margin: 0 auto;
   margin-top: 1em;
 }
-.table td.left {
-  text-align: left;
+.table .trtd:hover {
+  background-color: var(--secondary-bg-color);
 }
-.table td.center {
-  text-align: center;
+.table .name {
+  height: 100%;
+  padding: 0;
+}
+.table .name a {
+  display: block;
+  padding: 0.25em 0.5em;
+}
+.table .td a:hover {
+  color: var(--link-color);
 }
 .easy {
   color: var(--leetcode-easy);

@@ -9,8 +9,11 @@
   --page-max-width: 1200px;
   --page-min-width: 900px;
   --bg-color: white;
+  --secondary-bg-color: #e5e5e5;
   --text-color: #505050;
   --secondary-text-color: #cdcdcd;
+  --link-color: #79B0CC;
+  --link-hover-color: #3E9DCC;
   --primary-color: #0088cc;
   --accent-color: #f78a66;/*#f36c3d;*/
   --header-font-family: Arial Black, sans-serif;
@@ -136,9 +139,9 @@ main {
   max-width: min(100%, var(--page-max-width));
 }
 a {
-  color: var(--text-color);
+  color: var(--link-color);
   text-decoration: none;
 }
 a:hover {
-  color: var(--primary-color);
+  color: var(--link-hover-color);
 }

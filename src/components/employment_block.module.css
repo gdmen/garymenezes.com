@@ -28,7 +28,7 @@
   margin-bottom: 0.5em;
 }
 .line {
-  background-color: var(--secondary-text-color);
+  background-color: var(--secondary-bg-color);
   height: 1px;
   opacity: 0.5;
 }

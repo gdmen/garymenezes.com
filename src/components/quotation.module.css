@@ -107,10 +107,10 @@
   text-align: right;
 }
 .context, .name {
-  color: var(--secondary-text-color);
   font-size: 0.8em;
 }
 .context {
+  color: var(--secondary-text-color);
 }
 .context::after {
   content: " ";

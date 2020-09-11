@@ -9,7 +9,10 @@ const LeetCodeTable = () => {
   const data = useStaticQuery(graphql`
     query {
       allMdx(
-        sort: { fields: [frontmatter___number], order: ASC }
+        sort: {
+          fields: [frontmatter___difficulty, frontmatter___number]
+          order: ASC
+        }
         filter: { fields: { type: { eq: "note" }, book: { eq: "leetcode" } } }
       ) {
         edges {
@@ -37,12 +40,12 @@ const LeetCodeTable = () => {
         <th>Difficulty</th>
       </tr>
       {data.allMdx.edges.map(({ node }) => (
-        <tr key={node.id}>
-          <td className={styles.center}>{node.frontmatter.number}</td>
-          <td className={styles.left}>
+        <tr key={node.id} className={styles.trtd}>
+          <td>{node.frontmatter.number}</td>
+          <td className={styles.name}>
             <Link to={node.fields.slug}>{node.frontmatter.title}</Link>
           </td>
-          <td className={styles.center}>
+          <td>
             <span
               className={
                 node.frontmatter.difficulty === 0
