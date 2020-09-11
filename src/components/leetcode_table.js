@@ -38,11 +38,11 @@ const LeetCodeTable = () => {
       </tr>
       {data.allMdx.edges.map(({ node }) => (
         <tr key={node.id}>
-          <td>{node.frontmatter.number}</td>
-          <td>
+          <td className={styles.center}>{node.frontmatter.number}</td>
+          <td className={styles.left}>
             <Link to={node.fields.slug}>{node.frontmatter.title}</Link>
           </td>
-          <td>
+          <td className={styles.center}>
             <span
               className={
                 node.frontmatter.difficulty === 0

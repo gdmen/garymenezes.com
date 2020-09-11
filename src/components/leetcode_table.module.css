@@ -1,5 +1,12 @@
 .table {
   margin: 0 auto;
+  margin-top: 1em;
+}
+.table td.left {
+  text-align: left;
+}
+.table td.center {
+  text-align: center;
 }
 .easy {
   color: #2f9c0a;

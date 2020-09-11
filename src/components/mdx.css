@@ -62,7 +62,7 @@
   overflow-x: scroll;
 }
 .mdx table {
-  display: inline-block;
+  display: table;
   font-size: 0.85em;
 }
 .mdx table th {
@@ -72,6 +72,8 @@
 .mdx table td {
   border: 1px solid var(--secondary-text-color);
   padding: 0.25em 0.75em;
+}
+.mdx table td {
   text-align: right;
 }
 .mdx ul {
@@ -88,4 +90,7 @@
 }
 .mdx .series-red {
   color: #ea4335;
+}
+.mdx .text-center {
+  text-align: center;
 }

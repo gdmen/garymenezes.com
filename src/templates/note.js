@@ -12,9 +12,11 @@ export default function Note({ data }) {
     <Layout>
       <SEO title={data.mdx.frontmatter.title} />
       <div className={styles.book}>
-        <div className={styles.toc}>
-          <BookTOC edges={data.allMdx.edges} />
-        </div>
+        {data.mdx.frontmatter.toc && (
+          <div className={styles.toc}>
+            <BookTOC edges={data.allMdx.edges} />
+          </div>
+        )}
         <div className={`${styles.note} mdx`}>
           <MDXRenderer frontmatter={data.mdx.frontmatter}>
             {data.mdx.body}
@@ -36,6 +38,7 @@ export const query = graphql`
         number
         title
         url
+        toc
       }
     }
     allMdx(
