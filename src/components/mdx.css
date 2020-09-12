@@ -43,6 +43,10 @@
   line-height: 1.5em;
   margin-bottom: 1em;
 }
+.mdx p + ol,
+.mdx p + ul {
+  margin-top: -1em;
+}
 .mdx blockquote {
   border-left: .25em solid var(--blockquote-accent-color);
   padding: 0 1em;
@@ -67,7 +71,6 @@
 }
 .mdx table {
   display: table;
-  font-size: 0.85em;
   text-align: left;
 }
 .mdx table th,

@@ -4,11 +4,6 @@
 }
 .title {
 }
-.difficulty {
-  font-size: 0.5em;
-  margin-left: 1em;
-  text-transform: uppercase;
-}
 .easy {
   color: var(--leetcode-easy);
 }
@@ -18,6 +13,7 @@
 .hard {
   color: var(--leetcode-hard);
 }
+.difficulty,
 .date,
 .link {
   font-size: 0.75em;
@@ -28,13 +24,12 @@
   margin-right: 0.25em;
   padding-bottom: 0.075em;
 }
+.difficulty {
+  margin-left: 2em;
+  text-transform: uppercase;
+}
 .link {
   margin-left: 2em;
 }
-.link a {
-  color: var(--primary-color);
-  text-decoration: none;
-}
 .date {
-  margin-left: 1em;
 }

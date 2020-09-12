@@ -11,23 +11,23 @@ const LeetCodeHeading = ({ date, difficulty, number, title, url }) => (
   <div className={styles.heading}>
     <h3 className={styles.title}>
       LeetCode {number}. {title}
-      <span className={styles.difficulty}>
-        <span
-          className={
-            difficulty === 0
-              ? styles.easy
-              : difficulty === 1
-              ? styles.medium
-              : styles.hard
-          }
-        >
-          {difficultyText[difficulty]}
-        </span>
-      </span>
     </h3>
     <span className={styles.date}>
       <i className="material-icons">schedule</i>
       {date}
+    </span>
+    <span className={styles.difficulty}>
+      <span
+        className={
+          difficulty === 0
+            ? styles.easy
+            : difficulty === 1
+            ? styles.medium
+            : styles.hard
+        }
+      >
+        {difficultyText[difficulty]}
+      </span>
     </span>
     <span className={styles.link}>
       <i className="material-icons">open_in_new</i>
