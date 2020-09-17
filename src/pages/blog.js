@@ -4,7 +4,7 @@ import Layout from "../components/layout"
 
 export default function Blog({ data }) {
   return (
-    <Layout>
+    <Layout page="blog">
       <h4
         style={{
           textAlign: "center",

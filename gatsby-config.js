@@ -49,7 +49,7 @@ module.exports = {
       options: {
         fonts: [
           {
-            family: `Architects Daughter`,
+            family: `Didact Gothic`,
             variants: [`400`, `700`],
           },
         ],

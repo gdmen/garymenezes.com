@@ -9,7 +9,7 @@ import styles from "./post.module.css"
 export default function Post({ data }) {
   const node = data.mdx
   return (
-    <Layout>
+    <Layout page="blog">
       <SEO title={node.frontmatter.title} />
       <article className={styles.post}>
         <div className={styles.heading}>

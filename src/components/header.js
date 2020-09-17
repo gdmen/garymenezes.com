@@ -4,7 +4,7 @@ import PropTypes from "prop-types"
 
 import styles from "./header.module.css"
 
-const Header = ({ metadata }) => {
+const Header = ({ page, metadata }) => {
   return (
     <header className={styles.header}>
       <div className={styles.content}>
@@ -14,7 +14,11 @@ const Header = ({ metadata }) => {
         <div className={styles.menu}>
           <div className={styles.links}>
             {metadata.menu.map(link => (
-              <Link key={link} to={"/" + link} className={styles.link}>
+              <Link
+                key={link}
+                to={"/" + link}
+                className={`${styles.link} ${page === link && styles.selected}`}
+              >
                 {link}
               </Link>
             ))}
@@ -26,7 +30,12 @@ const Header = ({ metadata }) => {
 }
 
 Header.propTypes = {
+  page: PropTypes.string,
   metadata: PropTypes.object.isRequired,
+}
+
+Header.defaultProps = {
+  page: "",
 }
 
 export default Header

@@ -7,7 +7,7 @@ import styles from "./about.module.css"
 
 export default function About({ data }) {
   return (
-    <Layout>
+    <Layout page="about">
       <section>
         <ul className={styles.employment_list}>
           {data.allMdx.edges.map(({ node }) => (
