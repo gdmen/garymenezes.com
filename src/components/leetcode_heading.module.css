@@ -1,5 +1,6 @@
 .heading {
   border-bottom: 1px solid var(--secondary-color);
+  font-family: var(--header-font-family);
   margin-bottom: 1em;
 }
 .title {
@@ -23,7 +24,8 @@
   margin-right: 0.25em;
 }
 .link i {
-  opacity: 0.7;
+  font-size: 0.85em;
+  vertical-align: middle;
 }
 .difficulty {
   margin-left: 2em;
