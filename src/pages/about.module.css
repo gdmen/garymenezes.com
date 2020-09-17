@@ -1,4 +1,20 @@
-.employment_list {
+section {
   max-width: var(--page-min-width);
   margin: 0 auto;
 }
+.about_title {
+  border-bottom: 1px solid var(--secondary-bg-color);
+  margin-bottom: 0.5em;
+  padding-bottom: 0.5em;
+  text-align: center;
+}
+.about_content {
+  display: flex;
+  flex-wrap: wrap;
+}
+.about_content > div {
+  flex-basis: 20em;
+  flex-grow: 1;
+  padding: 1em;
+}
+

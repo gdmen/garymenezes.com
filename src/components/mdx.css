@@ -8,7 +8,6 @@
 .mdx h4,
 .mdx h5,
 .mdx h6 {
-  font-weight: normal;
   line-height: normal;
   padding-bottom: 0.25em
 }
@@ -90,7 +89,8 @@
 .mdx ol {
   list-style: decimal inside none;
 }
-.mdx li {
+.mdx li li {
+  margin-left: 1em;
   word-wrap: break-all;
 }
 .mdx .series-blue {

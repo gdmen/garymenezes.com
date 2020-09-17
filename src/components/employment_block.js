@@ -6,36 +6,40 @@ import { MDXRenderer } from "gatsby-plugin-mdx"
 import styles from "./employment_block.module.css"
 
 const EmploymentBlock = ({ company, title, loc, start, end, image, body }) => (
-  <div className={styles.employment}>
+  <div id={company.replace(/\s+/g, "")} className={styles.employment}>
     <div className={styles.heading}>
-      {image !== null && (
-        <div className={styles.htop}>
-          <span className={styles.line}></span>
+      <div className={styles.htop}>
+        <span className={styles.line}></span>
+        {image !== null ? (
           <Img
             className={styles.image}
             alt={company}
             fixed={image.childImageSharp.fixed}
           />
-          <span className={styles.line}></span>
-        </div>
-      )}
+        ) : (
+          <h2 className={styles.image}>{company}</h2>
+        )}
+        <span className={styles.line}></span>
+      </div>
       <span className={styles.subtitle}>
-        <span className={styles.title}>{title}</span>
+        {title && <span className={styles.title}>{title}</span>}
         <span className={styles.dates}>
-          {start} - {end}
+          {start} - {end ? end : "?"}
         </span>
       </span>
     </div>
-    <MDXRenderer>{body}</MDXRenderer>
+    <div className="mdx">
+      <MDXRenderer>{body}</MDXRenderer>
+    </div>
   </div>
 )
 
 EmploymentBlock.propTypes = {
   company: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
   loc: PropTypes.string.isRequired,
   start: PropTypes.string.isRequired,
-  end: PropTypes.string.isRequired,
+  end: PropTypes.string,
   image: PropTypes.object,
   body: PropTypes.string.isRequired,
 }

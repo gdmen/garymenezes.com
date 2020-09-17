@@ -50,7 +50,7 @@ const Quotation = ({ children, author, context, highlight }) => {
               alt={`A photo of ${authorObj.name}`}
             />
           ) : (
-            <span className={`${styles.anonymous}`}>
+            <span className={styles.anonymous}>
               <i className={`material-icons`}>person</i>
             </span>
           )}
