@@ -13,7 +13,7 @@ const LeetCodeHeading = ({ date, difficulty, number, title, url }) => (
       LeetCode {number}. {title}
     </h3>
     <span className={styles.date}>
-      <i className="material-icons">schedule</i>
+      <i className="far fa-clock"></i>
       {date}
     </span>
     <span className={styles.difficulty}>
@@ -30,7 +30,7 @@ const LeetCodeHeading = ({ date, difficulty, number, title, url }) => (
       </span>
     </span>
     <span className={styles.link}>
-      <i className="material-icons">open_in_new</i>
+      <i className="fas fa-external-link-alt"></i>
       <LinkOut to={url}>This problem on LeetCode</LinkOut>
     </span>
   </div>

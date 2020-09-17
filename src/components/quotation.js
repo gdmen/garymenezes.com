@@ -51,7 +51,7 @@ const Quotation = ({ children, author, context, highlight }) => {
             />
           ) : (
             <span className={styles.anonymous}>
-              <i className={`material-icons`}>person</i>
+              <i className="fas fa-user"></i>
             </span>
           )}
         </div>
