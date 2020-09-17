@@ -7,7 +7,7 @@ import styles from "./notes.module.css"
 
 export default function Notes({ data }) {
   return (
-    <Layout>
+    <Layout page="notes">
       <section>
         <ul className={styles.book_list}>
           {data.allMdx.edges.map(({ node }) => (

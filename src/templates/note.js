@@ -9,7 +9,7 @@ import styles from "./note.module.css"
 
 export default function Note({ data }) {
   return (
-    <Layout>
+    <Layout page="notes">
       <SEO title={data.mdx.frontmatter.title} />
       <div className={styles.book}>
         {data.mdx.frontmatter.toc && (

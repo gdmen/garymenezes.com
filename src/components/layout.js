@@ -23,7 +23,7 @@ const mdx_shortcodess = {
   Link,
 }
 
-const Layout = ({ children }) => {
+const Layout = ({ page, children }) => {
   const data = useStaticQuery(graphql`
     query {
       site {
@@ -36,7 +36,7 @@ const Layout = ({ children }) => {
   `)
   return (
     <>
-      <Header metadata={data.site.siteMetadata} />
+      <Header page={page} metadata={data.site.siteMetadata} />
       <main>
         <MDXProvider components={mdx_shortcodess}>{children}</MDXProvider>
       </main>
@@ -46,7 +46,12 @@ const Layout = ({ children }) => {
 }
 
 Layout.propTypes = {
+  page: PropTypes.string,
   children: PropTypes.node.isRequired,
+}
+
+Layout.defaultProps = {
+  page: "",
 }
 
 export default Layout

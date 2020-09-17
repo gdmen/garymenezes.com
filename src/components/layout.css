@@ -16,8 +16,8 @@
   --link-hover-color: #3E9DCC;
   --primary-color: #0088cc;
   --accent-color: #f78a66;/*#f36c3d;*/
-  --header-font-family: Arial Black, sans-serif;
-  --body-font-family: Trebuchet, Verdana, sans-serif;
+  --header-font-family: Trebuchet, Verdana, sans-serif;
+  --body-font-family: "Didact Gothic", Helvetica Neue, Helvetica, Arial, sans-serif;
   --blockquote-accent-color: #FF0000;
   --linkedin-blue: #0072b1;
   --leetcode-easy: #2f9c0a;
@@ -87,6 +87,7 @@ html {
   color: var(--text-color);
   display: grid;
   font-family: var(--body-font-family);
+  font-size: 18px;
 }
 body {
   overflow: auto;
@@ -126,13 +127,6 @@ h6 {
   font-size: 0.85em;
 }
 
-header {
-  color: var(--primary-color);
-  font-family: var(--header-font-family);
-  padding: 1em;
-  padding-top: 1em;
-  padding-bottom: 2em;
-}
 main {
   margin: 0 auto;
   padding: 0 3em;
