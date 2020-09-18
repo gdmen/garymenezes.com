@@ -8,6 +8,9 @@ clean:
 build:
 	gatsby build
 
+deploy:
+	make -f deploy.mk
+
 test: test_python
 
 test_python:
