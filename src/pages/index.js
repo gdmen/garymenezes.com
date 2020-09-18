@@ -18,7 +18,6 @@ export default function Index({ data }) {
 export const query = graphql`
   query {
     allMdx(sort: { fields: [frontmatter___date], order: DESC }) {
-      totalCount
       edges {
         node {
           id
