@@ -40,17 +40,12 @@ export default function About({ data }) {
 export const query = graphql`
   query {
     about: allMdx(
-      filter: {
-        frontmatter: { draft: { ne: true }, type: { eq: "about" } }
-      }
+      filter: { frontmatter: { draft: { ne: true }, type: { eq: "about" } } }
     ) {
       edges {
         node {
           id
           body
-          frontmatter {
-            date
-          }
         }
       }
     }

@@ -7,20 +7,20 @@ import { MDXProvider } from "@mdx-js/react"
 import Header from "./header"
 
 import Citation from "./citation"
-import Quotation from "./quotation"
-import LinkOut from "./link_out"
 import LeetCodeHeading from "./leetcode_heading"
 import LeetCodeTable from "./leetcode_table"
+import LinkOut from "./link_out"
+import Quotation from "./quotation"
 
 import "./layout.css"
 
-const mdx_shortcodess = {
+const mdx_shortcodes = {
   Citation,
-  Quotation,
-  LinkOut,
   LeetCodeHeading,
   LeetCodeTable,
   Link,
+  LinkOut,
+  Quotation,
 }
 
 const Layout = ({ padded, page, children }) => {
@@ -38,7 +38,7 @@ const Layout = ({ padded, page, children }) => {
     <>
       <Header page={page} metadata={data.site.siteMetadata} />
       <main className={padded && "padded"}>
-        <MDXProvider components={mdx_shortcodess}>{children}</MDXProvider>
+        <MDXProvider components={mdx_shortcodes}>{children}</MDXProvider>
       </main>
     </>
   )

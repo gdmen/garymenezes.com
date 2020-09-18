@@ -11,9 +11,7 @@ const Quotation = ({ children, author, context, highlight }) => {
   const people = useStaticQuery(graphql`
     query {
       allMdx(
-        filter: {
-          frontmatter: { draft: { ne: true }, type: { eq: "person" } }
-        }
+        filter: { frontmatter: { draft: { ne: true }, type: { eq: "person" } } }
       ) {
         edges {
           node {
