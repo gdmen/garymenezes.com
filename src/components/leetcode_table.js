@@ -13,7 +13,13 @@ const LeetCodeTable = () => {
           fields: [frontmatter___difficulty, frontmatter___number]
           order: ASC
         }
-        filter: { fields: { type: { eq: "note" }, book: { eq: "leetcode" } } }
+        filter: {
+          frontmatter: {
+            draft: { ne: true }
+            type: { eq: "note" }
+            book: { eq: "leetcode" }
+          }
+        }
       ) {
         edges {
           node {

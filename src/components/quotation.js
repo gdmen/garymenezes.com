@@ -10,7 +10,11 @@ import styles from "./quotation.module.css"
 const Quotation = ({ children, author, context, highlight }) => {
   const people = useStaticQuery(graphql`
     query {
-      allMdx(filter: { fields: { type: { eq: "person" } } }) {
+      allMdx(
+        filter: {
+          frontmatter: { draft: { ne: true }, type: { eq: "person" } }
+        }
+      ) {
         edges {
           node {
             id

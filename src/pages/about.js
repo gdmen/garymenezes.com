@@ -39,7 +39,11 @@ export default function About({ data }) {
 
 export const query = graphql`
   query {
-    about: allMdx(filter: { fields: { type: { eq: "about" } } }) {
+    about: allMdx(
+      filter: {
+        frontmatter: { draft: { ne: true }, type: { eq: "about" } }
+      }
+    ) {
       edges {
         node {
           id
@@ -52,7 +56,9 @@ export const query = graphql`
     }
     employment: allMdx(
       sort: { fields: [frontmatter___start], order: DESC }
-      filter: { fields: { type: { eq: "employment" } } }
+      filter: {
+        frontmatter: { draft: { ne: true }, type: { eq: "employment" } }
+      }
     ) {
       totalCount
       edges {

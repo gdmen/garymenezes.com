@@ -41,8 +41,11 @@ export default function Projects({ data }) {
 
 export const query = graphql`
   query {
-    allMdx(filter: { fields: { type: { eq: "project" } } }) {
-      totalCount
+    allMdx(
+      filter: {
+        frontmatter: { draft: { ne: true }, type: { eq: "project" } }
+      }
+    ) {
       edges {
         node {
           id

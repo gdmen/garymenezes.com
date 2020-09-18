@@ -34,15 +34,16 @@ export default function Notes({ data }) {
 export const query = graphql`
   query {
     allMdx(
-      sort: { fields: [fields___book], order: ASC }
-      filter: { fields: { type: { eq: "book" } } }
+      sort: { fields: [frontmatter___book], order: ASC }
+      filter: {
+        frontmatter: { draft: { ne: true }, type: { eq: "book" } }
+      }
     ) {
       totalCount
       edges {
         node {
           id
           fields {
-            book
             slug
           }
           frontmatter {

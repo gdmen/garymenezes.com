@@ -44,7 +44,7 @@ export const query = graphql`
     allMdx(
       sort: { fields: [frontmatter___number], order: ASC }
       filter: {
-        fields: { type: { in: ["note", "book"] }, book: { eq: $book } }
+        frontmatter: { type: { in: ["note", "book"] }, book: { eq: $book } }
       }
     ) {
       edges {
@@ -52,7 +52,6 @@ export const query = graphql`
           id
           fields {
             slug
-            type
           }
           frontmatter {
             number
