@@ -5,6 +5,9 @@ develop:
 clean:
 	gatsby clean
 
+build:
+	gatsby build
+
 test: test_python
 
 test_python:
