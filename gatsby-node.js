@@ -10,6 +10,8 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
     let type = "page"
     if (splitSlug[0] === "blog") {
       type = "post"
+    } else if (splitSlug[0] === "projects") {
+      type = "project"
     } else if (splitSlug[0] === "about") {
       type = "about"
       if (splitSlug[1] === "employment") {
@@ -63,6 +65,7 @@ exports.createPages = async ({ graphql, actions }) => {
   const edges = result.data.allMdx.edges
   const pages = edges.filter(e => e.node.fields.type === "page")
   const posts = edges.filter(e => e.node.fields.type === "post")
+  const projects = edges.filter(e => e.node.fields.type === "project")
   const notes = edges.filter(e => ["note", "book"].includes(e.node.fields.type))
   pages.forEach(({ node }) => {
     createPage({
@@ -77,6 +80,15 @@ exports.createPages = async ({ graphql, actions }) => {
     createPage({
       path: node.fields.slug,
       component: path.resolve("./src/templates/post.js"),
+      context: {
+        slug: node.fields.slug,
+      },
+    })
+  })
+  projects.forEach(({ node }) => {
+    createPage({
+      path: node.fields.slug,
+      component: path.resolve("./src/templates/page.js"),
       context: {
         slug: node.fields.slug,
       },

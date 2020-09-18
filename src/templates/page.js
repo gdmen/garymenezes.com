@@ -5,12 +5,13 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 
 export default function Page({ data }) {
-  const node = data.mdx
   return (
     <Layout>
-      <SEO title={node.frontmatter.title} />
-      <div>
-        <MDXRenderer frontmatter={node.frontmatter}>{node.body}</MDXRenderer>
+      <SEO title={data.mdx.frontmatter.title} />
+      <div className="mdx">
+        <MDXRenderer frontmatter={data.mdx.frontmatter}>
+          {data.mdx.body}
+        </MDXRenderer>
       </div>
     </Layout>
   )
@@ -21,6 +22,7 @@ export const query = graphql`
     mdx(fields: { slug: { eq: $slug } }) {
       body
       frontmatter {
+        date(formatString: "MMMM D, YYYY")
         title
       }
     }
