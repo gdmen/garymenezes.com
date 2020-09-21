@@ -100,8 +100,10 @@ h6 {
 }
 main {
   margin: 0 auto;
-  padding: 0 3em;
-  max-width: min(100%, var(--page-max-width));
+}
+main.padded {
+  padding: 0 1em;
+  max-width: var(--page-max-width);
 }
 a {
   color: var(--link-color);

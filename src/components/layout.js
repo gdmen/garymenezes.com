@@ -23,7 +23,7 @@ const mdx_shortcodess = {
   Link,
 }
 
-const Layout = ({ page, children }) => {
+const Layout = ({ padded, page, children }) => {
   const data = useStaticQuery(graphql`
     query {
       site {
@@ -37,7 +37,7 @@ const Layout = ({ page, children }) => {
   return (
     <>
       <Header page={page} metadata={data.site.siteMetadata} />
-      <main>
+      <main className={padded && "padded"}>
         <MDXProvider components={mdx_shortcodess}>{children}</MDXProvider>
       </main>
     </>
@@ -46,11 +46,13 @@ const Layout = ({ page, children }) => {
 }
 
 Layout.propTypes = {
+  padded: PropTypes.bool,
   page: PropTypes.string,
   children: PropTypes.node.isRequired,
 }
 
 Layout.defaultProps = {
+  padded: true,
   page: "",
 }
 
