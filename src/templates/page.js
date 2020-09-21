@@ -6,7 +6,7 @@ import SEO from "../components/seo"
 
 export default function Page({ data }) {
   return (
-    <Layout>
+    <Layout padded={false}>
       <SEO title={data.mdx.frontmatter.title} />
       <div className="mdx">
         <MDXRenderer frontmatter={data.mdx.frontmatter}>
@@ -22,8 +22,11 @@ export const query = graphql`
     mdx(fields: { slug: { eq: $slug } }) {
       body
       frontmatter {
-        date(formatString: "MMMM D, YYYY")
         title
+        source
+        live
+        date(formatString: "MMMM D, YYYY")
+        tags
       }
     }
   }

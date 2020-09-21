@@ -23,6 +23,13 @@
   --leetcode-easy: #2f9c0a;
   --leetcode-medium: #e69e39;
   --leetcode-hard: #c92c2c;
+
+  --light-red: #F59B7C;
+  --light-orange: #FED776;
+  --light-yellow: #F1F487;
+  --light-green: #C2ED98;
+  --light-blue: #8ED2CD;
+  --light-purple: #98A9D7;
 }
 
 /* Font Awesome */
@@ -35,9 +42,6 @@ i.fa-linkedin {
 }
 i.fa-github {
   color: black;
-}
-i.fa-map-marker-alt {
-  color: var(--accent-color);
 }
 
 /* Prismjs overrides */

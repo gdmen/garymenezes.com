@@ -9,7 +9,7 @@
 .mdx h5,
 .mdx h6 {
   line-height: normal;
-  padding-bottom: 0.25em
+  padding-bottom: 0.5em
 }
 .mdx h1 {
   font-size: 2em;
@@ -43,7 +43,8 @@
   margin-bottom: 1em;
 }
 .mdx p + ol,
-.mdx p + ul {
+.mdx p + ul,
+.mdx p + table {
   margin-top: -1em;
 }
 .mdx blockquote {
@@ -93,6 +94,7 @@
   margin-left: 1em;
   word-wrap: break-all;
 }
+/* utility classes */
 .mdx .series-blue {
   color: var(--series-blue);
 }

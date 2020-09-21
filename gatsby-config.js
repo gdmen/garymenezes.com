@@ -4,7 +4,7 @@ module.exports = {
   siteMetadata: {
     author: `Gary`,
     description: `Where Gary writes things he wants to remember.`,
-    menu: ["blog", "notes", "projects", "about"],
+    menu: [`blog`, `notes`, `projects`, `about`],
     title: [`Gary`, `Menezes`],
   },
   plugins: [
@@ -31,7 +31,9 @@ module.exports = {
           {
             resolve: `gatsby-remark-images`,
             options: {
+              linkImagesToOriginal: false,
               maxWidth: 1200,
+              showCaptions: true,
             },
           },
           {
