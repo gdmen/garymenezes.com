@@ -11,15 +11,19 @@ export default function Post({ data }) {
   return (
     <Layout page="blog">
       <SEO title={node.frontmatter.title} />
-      <article className={styles.post}>
-        <div className={styles.heading}>
-          <h1 className={styles.title}>{node.frontmatter.title}</h1>
-          <span className={styles.date}>{node.frontmatter.date}</span>
-        </div>
-        <div className={`${styles.content} mdx`}>
-          <MDXRenderer frontmatter={node.frontmatter}>{node.body}</MDXRenderer>
-        </div>
-      </article>
+      <div className="readable">
+        <article className={styles.post}>
+          <div className={styles.heading}>
+            <h1 className={styles.title}>{node.frontmatter.title}</h1>
+            <span className={styles.date}>{node.frontmatter.date}</span>
+          </div>
+          <div className={`${styles.content} mdx`}>
+            <MDXRenderer frontmatter={node.frontmatter}>
+              {node.body}
+            </MDXRenderer>
+          </div>
+        </article>
+      </div>
     </Layout>
   )
 }

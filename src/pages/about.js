@@ -7,45 +7,58 @@ import EmploymentBlock from "../components/employment_block"
 import styles from "./about.module.css"
 
 export default function About({ data }) {
-  const about = data.about.edges[0].node
+  const gary = data.gary.edges[0].node
   return (
     <Layout page="about">
-      <section>
-        <h2 className={styles.about_title}>ABOUT ME</h2>
-        <div className={`mdx ${styles.about_content}`}>
-          <MDXRenderer>{about.body}</MDXRenderer>
-        </div>
-      </section>
-      <section>
-        <ul className={styles.employment_list}>
-          {data.employment.edges.map(({ node }) => (
-            <li key={node.id}>
-              <EmploymentBlock
-                company={node.frontmatter.company}
-                image={node.frontmatter.image}
-                title={node.frontmatter.title}
-                loc={node.frontmatter.loc}
-                start={node.frontmatter.start}
-                end={node.frontmatter.end}
-                body={node.body}
-              ></EmploymentBlock>
-            </li>
-          ))}
-        </ul>
-      </section>
+      <div className="readable">
+        <section>
+          <h2 className={styles.about_title}>ABOUT ME</h2>
+          <div className={`mdx ${styles.about_content}`}>
+            <MDXRenderer frontmatter={gary.frontmatter}>
+              {gary.body}
+            </MDXRenderer>
+          </div>
+        </section>
+        <section>
+          <ul className={styles.employment_list}>
+            {data.employment.edges.map(({ node }) => (
+              <li key={node.id}>
+                <EmploymentBlock
+                  company={node.frontmatter.company}
+                  image={node.frontmatter.image}
+                  title={node.frontmatter.title}
+                  loc={node.frontmatter.loc}
+                  start={node.frontmatter.start}
+                  end={node.frontmatter.end}
+                  body={node.body}
+                ></EmploymentBlock>
+              </li>
+            ))}
+          </ul>
+        </section>
+      </div>
     </Layout>
   )
 }
 
 export const query = graphql`
   query {
-    about: allMdx(
-      filter: { frontmatter: { draft: { ne: true }, type: { eq: "about" } } }
+    gary: allMdx(
+      filter: {
+        frontmatter: {
+          draft: { ne: true }
+          type: { eq: "person" }
+          name: { eq: "Gary Menezes" }
+        }
+      }
     ) {
       edges {
         node {
-          id
           body
+          frontmatter {
+            linkedin
+            github
+          }
         }
       }
     }
@@ -58,7 +71,6 @@ export const query = graphql`
       totalCount
       edges {
         node {
-          id
           body
           frontmatter {
             company

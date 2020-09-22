@@ -139,3 +139,7 @@ a {
 a:hover {
   color: var(--link-hover-color);
 }
+.readable {
+  margin: 0 auto;
+  max-width: var(--page-min-width);
+}

@@ -1,32 +1,45 @@
 import React from "react"
-import { graphql, Link } from "gatsby"
+import { graphql } from "gatsby"
+import Img from "gatsby-image"
 import Layout from "../components/layout"
 
+import styles from "./index.module.css"
+
 export default function Index({ data }) {
+  const gary = data.gary.edges[0].node
   return (
     <Layout>
-      <h1>All Pages</h1>
-      {data.allMdx.edges.map(({ node }) => (
-        <div key={node.id}>
-          <Link to={node.fields.slug}>{node.frontmatter.title}</Link>
-        </div>
-      ))}
+      <Img
+        className={styles.image}
+        fluid={gary.frontmatter.image.childImageSharp.fluid}
+        alt={`A photo of ${gary.frontmatter.name}`}
+      />
     </Layout>
   )
 }
 
 export const query = graphql`
   query {
-    allMdx(sort: { fields: [frontmatter___date], order: DESC }) {
+    gary: allMdx(
+      filter: {
+        frontmatter: {
+          draft: { ne: true }
+          type: { eq: "person" }
+          name: { eq: "Gary Menezes" }
+        }
+      }
+    ) {
       edges {
         node {
-          id
-          fields {
-            slug
-          }
           frontmatter {
-            date(formatString: "DD MMMM, YYYY")
-            title
+            name
+            image {
+              childImageSharp {
+                fluid(maxWidth: 900) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
           }
         }
       }
