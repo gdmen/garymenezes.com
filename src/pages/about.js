@@ -71,6 +71,7 @@ export const query = graphql`
       totalCount
       edges {
         node {
+          id
           body
           frontmatter {
             company
