@@ -32,6 +32,20 @@
 .mdx figcaption {
   display: none;
 }
+.mdx .legend {
+  font-size: 0.85em;
+  text-align: center;
+}
+.mdx .legend span {
+  margin-right: 1em;
+}
+.mdx .legend span:last-child {
+  margin-right: 0;
+}
+.mdx .legend i {
+  font-size: 0.85em;
+  margin-right: 0.4em;
+}
 .mdx blockquote,
 .mdx details,
 .mdx dl,
@@ -49,7 +63,7 @@
   margin-top: -1em;
 }
 .mdx blockquote {
-  border-left: .25em solid var(--blockquote-accent-color);
+  border-left: .25em solid var(--red);
   padding: 0 1em;
 }
 .mdx blockquote>* {
@@ -62,16 +76,17 @@
   margin-bottom: 0;
 }
 .mdx blockquote>footer {
-  color: var(--blockquote-accent-color);
+  color: var(--red);
   font-size: 0.75em;
   font-style: italic;
-  opacity: 0.5;
 }
 .mdx pre {
   overflow-x: scroll;
 }
 .mdx table {
   display: table;
+  margin-left: auto;
+  margin-right: auto;
   text-align: left;
 }
 .mdx table th,
@@ -96,11 +111,11 @@
   word-wrap: break-all;
 }
 /* utility classes */
-.mdx .series-blue {
-  color: var(--series-blue);
+.mdx .series-one {
+  color: var(--blue);
 }
-.mdx .series-red {
-  color: var(--series-red);
+.mdx .series-two {
+  color: var(--red);
 }
 .mdx .text-center {
   text-align: center;
