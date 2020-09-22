@@ -9,7 +9,7 @@ const Header = ({ page, metadata }) => {
     <header className={styles.header}>
       <div className={styles.content}>
         <Link to="/" className={styles.title}>
-          {metadata.title.join(" ")}
+          {metadata.title}
         </Link>
         <div className={styles.menu}>
           <div className={styles.links}>

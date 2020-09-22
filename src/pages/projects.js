@@ -1,10 +1,12 @@
 import React from "react"
 import { graphql, Link } from "gatsby"
 import Layout from "../components/layout"
+import SEO from "../components/seo"
 
 export default function Projects({ data }) {
   return (
     <Layout page="projects">
+      <SEO title="projects" />
       <h4
         style={{
           textAlign: "center",
@@ -42,9 +44,7 @@ export default function Projects({ data }) {
 export const query = graphql`
   query {
     allMdx(
-      filter: {
-        frontmatter: { draft: { ne: true }, type: { eq: "project" } }
-      }
+      filter: { frontmatter: { draft: { ne: true }, type: { eq: "project" } } }
     ) {
       edges {
         node {

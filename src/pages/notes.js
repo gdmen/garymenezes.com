@@ -2,12 +2,14 @@ import React from "react"
 import { graphql, Link } from "gatsby"
 import Img from "gatsby-image"
 import Layout from "../components/layout"
+import SEO from "../components/seo"
 
 import styles from "./notes.module.css"
 
 export default function Notes({ data }) {
   return (
     <Layout page="notes">
+      <SEO title="notes" />
       <section>
         <ul className={styles.book_list}>
           {data.allMdx.edges.map(({ node }) => (
@@ -35,9 +37,7 @@ export const query = graphql`
   query {
     allMdx(
       sort: { fields: [frontmatter___book], order: ASC }
-      filter: {
-        frontmatter: { draft: { ne: true }, type: { eq: "book" } }
-      }
+      filter: { frontmatter: { draft: { ne: true }, type: { eq: "book" } } }
     ) {
       totalCount
       edges {

@@ -4,9 +4,9 @@ import { graphql } from "gatsby"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 
-export default function Page({ data }) {
+export default function Project({ data }) {
   return (
-    <Layout padded={false}>
+    <Layout page="projects" padded={false}>
       <SEO title={data.mdx.frontmatter.title} />
       <div className="mdx">
         <MDXRenderer frontmatter={data.mdx.frontmatter}>

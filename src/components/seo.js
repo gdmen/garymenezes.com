@@ -68,7 +68,21 @@ function SEO({ description, lang, meta, title }) {
           content: metaDescription,
         },
       ].concat(meta)}
-    />
+    >
+      <script
+        async
+        src="https://www.googletagmanager.com/gtag/js?id=UA-48083877-2"
+      ></script>
+      <script>
+        {`
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-48083877-2');
+        `}
+      </script>
+    </Helmet>
   )
 }
 
@@ -76,7 +90,7 @@ SEO.propTypes = {
   description: PropTypes.string,
   lang: PropTypes.string,
   meta: PropTypes.arrayOf(PropTypes.object),
-  title: PropTypes.arrayOf(PropTypes.string).isRequired,
+  title: PropTypes.string.isRequired,
 }
 
 SEO.defaultProps = {

@@ -3,9 +3,9 @@ const remarkMath = require(`remark-math`)
 module.exports = {
   siteMetadata: {
     author: `Gary`,
-    description: `Where Gary writes things he wants to remember.`,
+    description: `Where Gary writes things he wants people to know about.`,
     menu: [`blog`, `notes`, `projects`, `about`],
-    title: [`Gary`, `Menezes`],
+    title: `Gary Menezes`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,

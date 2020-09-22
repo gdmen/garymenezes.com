@@ -1,8 +1,9 @@
 import React from "react"
 import { graphql } from "gatsby"
 import { MDXRenderer } from "gatsby-plugin-mdx"
-import Layout from "../components/layout"
 import EmploymentBlock from "../components/employment_block"
+import Layout from "../components/layout"
+import SEO from "../components/seo"
 
 import styles from "./about.module.css"
 
@@ -10,6 +11,7 @@ export default function About({ data }) {
   const gary = data.gary.edges[0].node
   return (
     <Layout page="about">
+      <SEO title="about" />
       <div className="readable">
         <section>
           <h2 className={styles.about_title}>ABOUT ME</h2>
