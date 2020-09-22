@@ -29,8 +29,9 @@
 .mdx h6 {
   font-size: 0.85em;
 }
-
-
+.mdx figcaption {
+  display: none;
+}
 .mdx blockquote,
 .mdx details,
 .mdx dl,
