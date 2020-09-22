@@ -37,7 +37,7 @@ const Layout = ({ padded, page, children }) => {
   return (
     <>
       <Header page={page} metadata={data.site.siteMetadata} />
-      <main className={padded && "padded"}>
+      <main className={padded ? "padded" : ""}>
         <MDXProvider components={mdx_shortcodes}>{children}</MDXProvider>
       </main>
     </>
