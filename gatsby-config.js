@@ -60,6 +60,7 @@ module.exports = {
     {
       resolve: "gatsby-plugin-htaccess",
       options: {
+        https: true,
         ErrorDocument: `
           ErrorDocument 404 /404.html
           ErrorDocument 403 /404.html
