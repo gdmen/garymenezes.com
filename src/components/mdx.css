@@ -2,6 +2,25 @@
   --series-blue: #4285f4;
   --series-red: #ea4335;
 }
+
+/* Prismjs overrides */
+pre[class*="language-"]:before,
+pre[class*="language-"]:after {
+  display: none;
+}
+pre[class*="language-"] {
+  font-size: 0.75em;
+}
+pre[class*="language-"] .line-numbers-rows {
+  line-height: 1.5em;
+  padding-left: 2em;
+}
+
+/* gatsby-remark-embed-video overrides */
+.embedVideo-iframe {
+  max-width: 100%;
+}
+
 .mdx h1,
 .mdx h2,
 .mdx h3,
@@ -109,6 +128,9 @@
 .mdx li li {
   margin-left: 1em;
   word-wrap: break-all;
+}
+.mdx video {
+  max-width: 100%;
 }
 /* utility classes */
 .mdx .series-one {

@@ -43,19 +43,6 @@ i.fa-github {
   color: black;
 }
 
-/* Prismjs overrides */
-pre[class*="language-"]:before,
-pre[class*="language-"]:after {
-  display: none;
-}
-pre[class*="language-"] {
-  font-size: 0.75em;
-}
-pre[class*="language-"] .line-numbers-rows {
-  line-height: 1.5em;
-  padding-left: 2em;
-}
-
 /* garymenezes.com */
 .light-red {
   color: var(--red);
