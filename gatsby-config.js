@@ -28,6 +28,7 @@ module.exports = {
         gatsbyRemarkPlugins: [
           `gatsby-remark-katex`,
           `gatsby-remark-embed-snippet`,
+          `gatsby-remark-embed-video`,
           {
             resolve: `gatsby-remark-images`,
             options: {
