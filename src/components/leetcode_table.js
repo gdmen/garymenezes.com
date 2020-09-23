@@ -11,7 +11,7 @@ const LeetCodeTable = () => {
       allMdx(
         sort: {
           fields: [frontmatter___difficulty, frontmatter___number]
-          order: [DESC, ASC]
+          order: [ASC, ASC]
         }
         filter: {
           frontmatter: {
