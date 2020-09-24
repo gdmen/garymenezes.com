@@ -129,9 +129,6 @@ pre[class*="language-"] .line-numbers-rows {
   margin-left: 1em;
   word-wrap: break-all;
 }
-.mdx video {
-  max-width: 100%;
-}
 /* utility classes */
 .mdx .series-one {
   color: var(--blue);

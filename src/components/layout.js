@@ -11,6 +11,7 @@ import LeetCodeHeading from "./leetcode_heading"
 import LeetCodeTable from "./leetcode_table"
 import LinkOut from "./link_out"
 import Quotation from "./quotation"
+import Video from "./video"
 
 import "./layout.css"
 
@@ -21,6 +22,7 @@ const mdx_shortcodes = {
   Link,
   LinkOut,
   Quotation,
+  Video,
 }
 
 const Layout = ({ padded, page, children }) => {
