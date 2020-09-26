@@ -139,3 +139,6 @@ pre[class*="language-"] .line-numbers-rows {
 .mdx .text-center {
   text-align: center;
 }
+.mdx .text-right {
+  text-align: right;
+}
