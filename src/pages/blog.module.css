@@ -1,0 +1,34 @@
+.list {
+  display: grid;
+}
+@media only screen and (min-width: 768px) {
+  .list {
+    grid-template-columns: 1fr 1fr;
+    column-gap: 1em;
+  }
+}
+.post {
+  border-bottom: 1px solid var(--secondary-bg-color);
+  padding: 1em;
+  color: var(--text-color);
+  display: block;
+  text-decoration: none;
+}
+.post:hover {
+  background-color: var(--block-link-hover-color);
+  color: var(--text-color);
+}
+@media only screen and (min-width: 768px) {
+  .post {
+    border: none;
+  }
+}
+.date {
+  color: var(--secondary-text-color);
+  font-size: 0.75em;
+}
+.title {
+  font-size: 1.25em;
+  line-height: 1.5em;
+  margin-top: 0.5em;
+}

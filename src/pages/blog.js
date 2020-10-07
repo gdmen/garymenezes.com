@@ -3,37 +3,19 @@ import { graphql, Link } from "gatsby"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 
+import styles from "./blog.module.css"
+
 export default function Blog({ data }) {
   return (
     <Layout page="blog">
       <SEO title="blog" />
-      <h4
-        style={{
-          textAlign: "center",
-        }}
-      >
-        experiments, tutorials, and what I'm learning
-      </h4>
       <section>
-        <div
-          style={{
-            display: "grid",
-          }}
-        >
+        <div className={styles.list}>
           {data.allMdx.edges.map(({ node }) => (
-            <div key={node.id}>
-              <h4>
-                <Link
-                  to={node.fields.slug}
-                  style={{
-                    color: "var(--text-color)",
-                    textDecoration: "none",
-                  }}
-                >
-                  {node.frontmatter.title}
-                </Link>
-              </h4>
-            </div>
+            <Link key={node.id} to={node.fields.slug} className={styles.post}>
+              <div className={styles.date}>{node.frontmatter.date}</div>
+              <div className={styles.title}>{node.frontmatter.title}</div>
+            </Link>
           ))}
         </div>
       </section>
@@ -54,7 +36,7 @@ export const query = graphql`
             slug
           }
           frontmatter {
-            date(formatString: "DD MMMM, YYYY")
+            date(formatString: "MMMM DD, YYYY")
             title
           }
         }
