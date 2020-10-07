@@ -40,13 +40,13 @@ const LeetCodeTable = () => {
   `)
   return (
     <table className={styles.table}>
-      <tr>
+      <tr className={styles.head}>
         <th>#</th>
         <th>Name</th>
         <th>Difficulty</th>
       </tr>
       {data.allMdx.edges.map(({ node }) => (
-        <tr key={node.id} className={styles.trtd}>
+        <tr key={node.id} className={styles.row}>
           <td>{node.frontmatter.number}</td>
           <td className={styles.name}>
             <Link to={node.fields.slug}>{node.frontmatter.title}</Link>

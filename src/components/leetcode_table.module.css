@@ -2,7 +2,10 @@
   margin: 0 auto;
   margin-top: 1em;
 }
-.table .trtd:hover {
+.table tr.head th {
+  padding-left: 0.25em;
+}
+.table .row:hover {
   background-color: var(--block-link-hover-color);
 }
 .table .name {
