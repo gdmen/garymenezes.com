@@ -2,9 +2,13 @@
   border-top: 2px solid var(--primary-color);
   color: var(--text-color);
   font-family: var(--header-font-family);
-  margin-bottom: 2em;
   padding: 1em;
   padding-bottom: 2em;
+}
+@media only screen and (min-width: 768px) {
+  .header {
+    margin-bottom: 2em;
+  }
 }
 .content {
   display: flex;
