@@ -8,16 +8,20 @@
 .table .row:hover {
   background-color: var(--block-link-hover-color);
 }
-.table .name {
-  height: 100%;
+.table .row td {
+  min-height: 100%;
   padding: 0;
 }
-.table .name a {
+.table .row td a {
   display: block;
   padding: 0.25em 0.5em;
+  width: 100%;
 }
 .table .td a:hover {
   color: var(--link-color);
+}
+.table .number a {
+  color: var(--text-color);
 }
 .easy {
   color: var(--leetcode-easy);

@@ -42,27 +42,31 @@ const LeetCodeTable = () => {
     <table className={styles.table}>
       <tr className={styles.head}>
         <th>#</th>
+        <th>Level</th>
         <th>Name</th>
-        <th>Difficulty</th>
       </tr>
       {data.allMdx.edges.map(({ node }) => (
         <tr key={node.id} className={styles.row}>
-          <td>{node.frontmatter.number}</td>
-          <td className={styles.name}>
-            <Link to={node.fields.slug}>{node.frontmatter.title}</Link>
+          <td className={styles.number}>
+            <Link to={node.fields.slug}>{node.frontmatter.number}</Link>
           </td>
           <td>
-            <span
-              className={
-                node.frontmatter.difficulty === 0
-                  ? styles.easy
-                  : node.frontmatter.difficulty === 1
-                  ? styles.medium
-                  : styles.hard
-              }
-            >
-              {difficultyText[node.frontmatter.difficulty]}
-            </span>
+            <Link to={node.fields.slug}>
+              <span
+                className={
+                  node.frontmatter.difficulty === 0
+                    ? styles.easy
+                    : node.frontmatter.difficulty === 1
+                    ? styles.medium
+                    : styles.hard
+                }
+              >
+                {difficultyText[node.frontmatter.difficulty]}
+              </span>
+            </Link>
+          </td>
+          <td className={styles.name}>
+            <Link to={node.fields.slug}>{node.frontmatter.title}</Link>
           </td>
         </tr>
       ))}
