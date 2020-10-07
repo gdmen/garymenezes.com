@@ -39,34 +39,38 @@ const LeetCodeTable = () => {
     }
   `)
   return (
-    <table className={styles.table}>
-      <tr>
-        <th>#</th>
-        <th>Name</th>
-        <th>Difficulty</th>
-      </tr>
+    <div className={styles.table}>
+      <div className={styles.header}>
+        <div>#</div>
+        <div>Name</div>
+        <div>Difficulty</div>
+      </div>
       {data.allMdx.edges.map(({ node }) => (
-        <tr key={node.id} className={styles.trtd}>
-          <td>{node.frontmatter.number}</td>
-          <td className={styles.name}>
+        <div key={node.id} className={styles.row}>
+          <div className={styles.number}>
+            <Link to={node.fields.slug}>{node.frontmatter.number}</Link>
+          </div>
+          <div className={styles.name}>
             <Link to={node.fields.slug}>{node.frontmatter.title}</Link>
-          </td>
-          <td>
-            <span
-              className={
-                node.frontmatter.difficulty === 0
-                  ? styles.easy
-                  : node.frontmatter.difficulty === 1
-                  ? styles.medium
-                  : styles.hard
-              }
-            >
-              {difficultyText[node.frontmatter.difficulty]}
-            </span>
-          </td>
-        </tr>
+          </div>
+          <div>
+            <Link to={node.fields.slug}>
+              <span
+                className={
+                  node.frontmatter.difficulty === 0
+                    ? styles.easy
+                    : node.frontmatter.difficulty === 1
+                    ? styles.medium
+                    : styles.hard
+                }
+              >
+                {difficultyText[node.frontmatter.difficulty]}
+              </span>
+            </Link>
+          </div>
+        </div>
       ))}
-    </table>
+    </div>
   )
 }
 

@@ -1,20 +1,11 @@
 .table {
   margin: 0 auto;
-  margin-top: 1em;
 }
-.table .trtd:hover {
-  background-color: var(--block-link-hover-color);
+.table > div {
+  display: flex;
 }
-.table .name {
-  height: 100%;
-  padding: 0;
-}
-.table .name a {
-  display: block;
-  padding: 0.25em 0.5em;
-}
-.table .td a:hover {
-  color: var(--link-color);
+.table > div > div {
+  flex: 1;
 }
 .easy {
   color: var(--leetcode-easy);
