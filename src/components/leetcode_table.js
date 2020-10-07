@@ -40,20 +40,26 @@ const LeetCodeTable = () => {
   `)
   return (
     <div className={styles.table}>
-      <div className={styles.header}>
-        <div>#</div>
-        <div>Name</div>
-        <div>Difficulty</div>
-      </div>
-      {data.allMdx.edges.map(({ node }) => (
-        <div key={node.id} className={styles.row}>
-          <div className={styles.number}>
+      <div className={styles.numberCol}>
+        <div className={styles.header}>#</div>
+        {data.allMdx.edges.map(({ node }) => (
+          <div key={node.id} className={styles.number}>
             <Link to={node.fields.slug}>{node.frontmatter.number}</Link>
           </div>
-          <div className={styles.name}>
+        ))}
+      </div>
+      <div className={styles.nameCol}>
+        <div className={styles.header}>Name</div>
+        {data.allMdx.edges.map(({ node }) => (
+          <div key={node.id} className={styles.name}>
             <Link to={node.fields.slug}>{node.frontmatter.title}</Link>
           </div>
-          <div>
+        ))}
+      </div>
+      <div className={styles.difficultyCol}>
+        <div className={styles.header}>Difficulty</div>
+        {data.allMdx.edges.map(({ node }) => (
+          <div key={node.id} className={styles.difficulty}>
             <Link to={node.fields.slug}>
               <span
                 className={
@@ -68,8 +74,8 @@ const LeetCodeTable = () => {
               </span>
             </Link>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   )
 }

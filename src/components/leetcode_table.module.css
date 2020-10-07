@@ -1,11 +1,9 @@
 .table {
+  display: flex;
   margin: 0 auto;
 }
 .table > div {
-  display: flex;
-}
-.table > div > div {
-  flex: 1;
+
 }
 .easy {
   color: var(--leetcode-easy);
