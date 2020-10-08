@@ -33,7 +33,7 @@ export const query = graphql`
       body
       frontmatter {
         authors
-        date(formatString: "MMMM D, YYYY")
+        date(formatString: "MMMM DD, YYYY")
         difficulty
         number
         title

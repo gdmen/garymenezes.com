@@ -1,5 +1,49 @@
-.image {
-  display: none;
-  margin: 0 auto;
-  max-width: 20em;
+@media only screen and (min-width: 768px) {
+  .cols {
+    column-gap: 5%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+.colHeader {
+  border-bottom: 1px solid var(--secondary-bg-color);
+  font-weight: bold;
+  margin-bottom: 0.5em;
+  padding-bottom: 0.5em;
+}
+.colHeader a {
+  font-size: 0.5em;
+}
+.blogHighlight .post {
+  color: var(--text-color);
+  display: block;
+}
+.date {
+  color: var(--secondary-text-color);
+  font-size: 0.75em;
+  margin-bottom: 0.25em;
+}
+.title {
+  line-height: 1.5;
+}
+.blogHighlight .excerpt {
+  padding-left: 0.5em;
+}
+.lcHighlight .lc {
+  color: var(--text-color);
+  display: block;
+  padding-bottom: 1em;
+}
+.lcHighlight .difficulty {
+  font-size: 0.75em;
+  margin-left: 0.75em;
+}
+.easy {
+  color: var(--leetcode-easy);
+}
+.medium {
+  color: var(--leetcode-medium);
+}
+.hard {
+  color: var(--leetcode-hard);
 }

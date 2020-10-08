@@ -1,47 +1,100 @@
 import React from "react"
-import { graphql } from "gatsby"
-import Img from "gatsby-image"
+import { graphql, Link } from "gatsby"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 
 import styles from "./index.module.css"
 
+const difficultyText = { 0: "easy", 1: "medium", 2: "hard" }
+
 export default function Index({ data }) {
-  const gary = data.gary.edges[0].node
+  const post = data.blog.edges[0].node
+  const lcs = data.leetcode.edges
   return (
     <Layout>
       <SEO title="home" />
-      <Img
-        className={styles.image}
-        fluid={gary.frontmatter.image.childImageSharp.fluid}
-        alt={`A photo of ${gary.frontmatter.name}`}
-      />
+      <div className={styles.cols}>
+        <div className={styles.blogHighlight}>
+          <h4 className={styles.colHeader}>Latest Post</h4>
+          <Link to={post.fields.slug} className={styles.post}>
+            <div className={styles.date}>{post.frontmatter.date}</div>
+            <h4 className={styles.title}>{post.frontmatter.title}</h4>
+            <div className="mdx">
+              <p className={styles.excerpt}>{post.excerpt}</p>
+            </div>
+          </Link>
+        </div>
+        <div className={styles.lcHighlight}>
+          <h4 className={styles.colHeader}>
+            Recent LeetCode Solutions <Link to="notes/leetcode">[see all]</Link>
+          </h4>
+          {lcs.map(({ node }) => (
+            <Link key={node.id} to={node.fields.slug} className={styles.lc}>
+              <div className={styles.date}>{node.frontmatter.date}</div>
+              <h5 className={styles.title}>
+                {node.frontmatter.title}
+                <span
+                  className={`${styles.difficulty} ${
+                    node.frontmatter.difficulty === 0
+                      ? styles.easy
+                      : node.frontmatter.difficulty === 1
+                      ? styles.medium
+                      : styles.hard
+                  }`}
+                >
+                  {difficultyText[node.frontmatter.difficulty]}
+                </span>
+              </h5>
+            </Link>
+          ))}
+        </div>
+      </div>
     </Layout>
   )
 }
 
 export const query = graphql`
   query {
-    gary: allMdx(
+    blog: allMdx(
+      limit: 1
+      sort: { fields: [frontmatter___date], order: DESC }
+      filter: { frontmatter: { draft: { ne: true }, type: { eq: "post" } } }
+    ) {
+      edges {
+        node {
+          id
+          excerpt
+          fields {
+            slug
+          }
+          frontmatter {
+            date(formatString: "MMMM DD, YYYY")
+            title
+          }
+        }
+      }
+    }
+    leetcode: allMdx(
+      limit: 5
+      sort: { fields: [frontmatter___date], order: [DESC] }
       filter: {
         frontmatter: {
           draft: { ne: true }
-          type: { eq: "person" }
-          name: { eq: "Gary Menezes" }
+          type: { eq: "note" }
+          book: { eq: "leetcode" }
         }
       }
     ) {
       edges {
         node {
+          id
+          fields {
+            slug
+          }
           frontmatter {
-            name
-            image {
-              childImageSharp {
-                fluid(maxWidth: 900) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-            }
+            date(formatString: "MMMM DD, YYYY")
+            difficulty
+            title
           }
         }
       }

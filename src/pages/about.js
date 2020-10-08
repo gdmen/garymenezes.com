@@ -86,8 +86,8 @@ export const query = graphql`
             }
             title
             loc
-            start(formatString: "MMMM D, YYYY")
-            end(formatString: "MMMM D, YYYY")
+            start(formatString: "MMMM DD, YYYY")
+            end(formatString: "MMMM DD, YYYY")
           }
         }
       }

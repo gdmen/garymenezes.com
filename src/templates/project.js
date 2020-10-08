@@ -25,7 +25,7 @@ export const query = graphql`
         title
         source
         live
-        date(formatString: "MMMM D, YYYY")
+        date(formatString: "MMMM DD, YYYY")
         tags
       }
     }
