@@ -34,8 +34,8 @@ export const query = graphql`
       body
       frontmatter {
         title
-        date(formatString: "MMMM D, YYYY")
-        updated(formatString: "MMMM D, YYYY")
+        date(formatString: "MMMM DD, YYYY")
+        updated(formatString: "MMMM DD, YYYY")
       }
     }
   }

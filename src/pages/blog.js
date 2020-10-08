@@ -14,7 +14,7 @@ export default function Blog({ data }) {
           {data.allMdx.edges.map(({ node }) => (
             <Link key={node.id} to={node.fields.slug} className={styles.post}>
               <div className={styles.date}>{node.frontmatter.date}</div>
-              <div className={styles.title}>{node.frontmatter.title}</div>
+              <h4 className={styles.title}>{node.frontmatter.title}</h4>
             </Link>
           ))}
         </div>
