@@ -15,7 +15,9 @@ export default function Index({ data }) {
       <SEO title="home" />
       <div className={styles.cols}>
         <div className={styles.blogHighlight}>
-          <h4 className={styles.colHeader}>Latest Post</h4>
+          <div className={styles.colHeader}>
+            <h4>Latest Post</h4>
+          </div>
           <Link to={post.fields.slug} className={styles.post}>
             <div className={styles.date}>{post.frontmatter.date}</div>
             <h4 className={styles.title}>{post.frontmatter.title}</h4>
@@ -25,27 +27,30 @@ export default function Index({ data }) {
           </Link>
         </div>
         <div className={styles.lcHighlight}>
-          <h4 className={styles.colHeader}>
-            Recent LeetCode Solutions <Link to="notes/leetcode">[see all]</Link>
-          </h4>
+          <div className={styles.colHeader}>
+            <h4>Recent LeetCode Solutions</h4>
+            <Link to="notes/leetcode">[ view all ]</Link>
+          </div>
           {lcs.map(({ node }) => (
-            <Link key={node.id} to={node.fields.slug} className={styles.lc}>
-              <div className={styles.date}>{node.frontmatter.date}</div>
-              <h5 className={styles.title}>
-                {node.frontmatter.title}
-                <span
-                  className={`${styles.difficulty} ${
-                    node.frontmatter.difficulty === 0
-                      ? styles.easy
-                      : node.frontmatter.difficulty === 1
-                      ? styles.medium
-                      : styles.hard
-                  }`}
-                >
-                  {difficultyText[node.frontmatter.difficulty]}
-                </span>
-              </h5>
-            </Link>
+            <div>
+              <Link key={node.id} to={node.fields.slug} className={styles.lc}>
+                <div className={styles.date}>{node.frontmatter.date}</div>
+                <h5 className={styles.title}>
+                  {node.frontmatter.title}
+                  <span
+                    className={`${styles.difficulty} ${
+                      node.frontmatter.difficulty === 0
+                        ? styles.easy
+                        : node.frontmatter.difficulty === 1
+                        ? styles.medium
+                        : styles.hard
+                    }`}
+                  >
+                    {difficultyText[node.frontmatter.difficulty]}
+                  </span>
+                </h5>
+              </Link>
+            </div>
           ))}
         </div>
       </div>

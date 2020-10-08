@@ -9,7 +9,7 @@
 }
 .post {
   border-bottom: 1px solid var(--secondary-bg-color);
-  padding: 1em;
+  padding: 1em 0;
   color: var(--text-color);
   display: block;
   text-decoration: none;
@@ -21,6 +21,7 @@
 @media only screen and (min-width: 768px) {
   .post {
     border: none;
+    padding: 1em;
   }
 }
 .date {

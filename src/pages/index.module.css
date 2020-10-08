@@ -5,18 +5,32 @@
     grid-template-columns: 1fr 1fr;
   }
 }
+.cols > div {
+  margin-bottom: 2em;
+}
 .colHeader {
+  align-items: center;
   border-bottom: 1px solid var(--secondary-bg-color);
-  font-weight: bold;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
   margin-bottom: 0.5em;
-  padding-bottom: 0.5em;
+}
+.colHeader h4 {
+  flex-grow: 1;
+  font-weight: bold;
+  margin-bottom: 0.4em;
 }
 .colHeader a {
-  font-size: 0.5em;
+  margin-bottom: 0.5em;
 }
 .blogHighlight .post {
   color: var(--text-color);
   display: block;
+  padding-top: 0.5em;
+}
+.blogHighlight .post:hover {
+  color: var(--link-hover-color);
 }
 .date {
   color: var(--secondary-text-color);
@@ -27,12 +41,21 @@
   line-height: 1.5;
 }
 .blogHighlight .excerpt {
+  color: var(--text-color);
   padding-left: 0.5em;
 }
 .lcHighlight .lc {
   color: var(--text-color);
   display: block;
-  padding-bottom: 1em;
+  padding: 0.5em 0;
+}
+@media only screen and (min-width: 768px) {
+  .lcHighlight .lc {
+    display: inline-block;
+  }
+}
+.lcHighlight .lc:hover {
+  color: var(--link-hover-color);
 }
 .lcHighlight .difficulty {
   font-size: 0.75em;
