@@ -13,9 +13,8 @@
   }
 }
 .date {
+  color: var(--secondary-text-color);
   font-size: 0.75em;
-  font-style: italic;
-  margin-left: 1em;
 }
 .content {
 }

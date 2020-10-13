@@ -34,4 +34,5 @@
   margin-left: 2em;
 }
 .date {
+  color: var(--secondary-text-color);
 }
