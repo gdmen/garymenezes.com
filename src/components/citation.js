@@ -1,16 +1,24 @@
 import React from "react"
 import PropTypes from "prop-types"
 
-let works = new Map([
-  ["", "missing title"],
-  ["clrs", "Introduction to Algorithms Second Edition"],
-])
+import LinkOut from "./link_out"
 
-const Citation = ({ title, text }) => (
-  <footer>
-    <cite>&mdash; {works.get(title)}</cite>, {text}
-  </footer>
-)
+let works = new Map([["clrs", "Introduction to Algorithms Second Edition"]])
+
+const Citation = ({ title, text }) => {
+  text = text !== undefined ? ", " + text : text
+  title = works.has(title) ? (
+    works.get(title)
+  ) : (
+    <LinkOut to={title}>{title}</LinkOut>
+  )
+  return (
+    <footer>
+      &mdash; <cite>{title}</cite>
+      {text}
+    </footer>
+  )
+}
 
 Citation.propTypes = {
   title: PropTypes.string.isRequired,
