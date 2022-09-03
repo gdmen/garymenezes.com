@@ -37,6 +37,7 @@ export const query = graphql`
         difficulty
         number
         title
+        subtitle
         url
         toc
       }

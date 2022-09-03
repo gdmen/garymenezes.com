@@ -3,7 +3,10 @@ import PropTypes from "prop-types"
 
 import LinkOut from "./link_out"
 
-let works = new Map([["clrs", "Introduction to Algorithms Second Edition"]])
+let works = new Map([
+  ["clrs", "Introduction to Algorithms Second Edition"],
+  ["noboundary", "No Boundary"]
+])
 
 const Citation = ({ title, text }) => {
   text = text !== undefined ? ", " + text : text
