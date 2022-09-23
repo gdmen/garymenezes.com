@@ -71,7 +71,7 @@ function SEO({ description, lang, meta, title }) {
     >
       <script
         async
-        src="https://www.googletagmanager.com/gtag/js?id=UA-48083877-2"
+        src="https://www.googletagmanager.com/gtag/js?id=G-DDC270G99E"
       ></script>
       <script>
         {`
@@ -79,7 +79,7 @@ function SEO({ description, lang, meta, title }) {
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
 
-        gtag('config', 'UA-48083877-2');
+        gtag('config', 'G-DDC270G99E');
         `}
       </script>
     </Helmet>
