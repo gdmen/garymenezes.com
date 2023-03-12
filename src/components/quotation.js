@@ -43,36 +43,34 @@ const Quotation = ({ children, author, context, highlight }) => {
   })
   return (
     <div className={`${styles.quotation} ${highlight && styles.highlight}`}>
-      <div className={styles.author}>
-        <div className={styles.headshot}>
-          {authorObj.image ? (
-            <Img
-              className={styles.image}
-              fluid={authorObj.image.childImageSharp.fluid}
-              alt={`A photo of ${authorObj.name}`}
-            />
-          ) : (
-            <span className={styles.anonymous}>
-              <i className="fas fa-user"></i>
-            </span>
+      {authorObj.name && (
+        <div className={styles.author}>
+          <div className={styles.headshot}>
+            {authorObj.image && (
+              <Img
+                className={styles.image}
+                fluid={authorObj.image.childImageSharp.fluid}
+                alt={`A photo of ${authorObj.name}`}
+              />
+            )}
+          </div>
+          {authorObj.linkedin && (
+            <div className={styles.linkedin}>
+              <LinkOut to={authorObj.linkedin}>
+                <span className="fa-stack">
+                  <i className="fas fa-circle fa-stack-1x"></i>
+                  <i className="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+                </span>
+              </LinkOut>
+            </div>
           )}
         </div>
-        {authorObj.linkedin && (
-          <div className={styles.linkedin}>
-            <LinkOut to={authorObj.linkedin}>
-              <span className="fa-stack">
-                <i className="fas fa-circle fa-stack-1x"></i>
-                <i className="fab fa-linkedin fa-stack-1x fa-inverse"></i>
-              </span>
-            </LinkOut>
-          </div>
-        )}
-      </div>
+      )}
       <div className={styles.content}>
         <div className={styles.text}>
-          {highlight && <i className="fas fa-quote-left"></i>}
+          {<i className="fas fa-quote-left"></i>}
           {children}
-          {highlight && <i className="fas fa-quote-right"></i>}
+          {<i className="fas fa-quote-right"></i>}
         </div>
         <div className={styles.citation}>
           <span className={styles.context}>{context}</span>
@@ -97,7 +95,7 @@ Quotation.propTypes = {
 }
 
 Quotation.defaultProps = {
-  author: "",
+  author: null,
   context: "",
   highlight: false,
 }

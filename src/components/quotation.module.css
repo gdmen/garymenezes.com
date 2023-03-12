@@ -5,13 +5,10 @@
 }
 .quotation {
   align-items: flex-start;
-  display: none;
+  display: flex;
   flex-wrap: wrap;
   justify-content: center;
   line-height: 1.25em;
-}
-.highlight {
-  display: flex;
 }
 .highlight .author {
   font-size: var(--hl-author-x);
@@ -66,10 +63,6 @@
 .image {
   width: var(--author-size);
 }
-.anonymous {
-  font-size: calc(1.3 * var(--author-size));
-  margin-bottom: -0.075em;
-}
 .content {
   flex-basis: 70%;
   flex-grow: 99;
@@ -77,8 +70,6 @@
 .text {
   padding: 1em;
   position: relative;
-}
-.highlight .text {
   text-indent: 1.5em;
 }
 .text i {
