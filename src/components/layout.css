@@ -119,6 +119,7 @@ h6 {
 }
 main {
   margin: 0 auto;
+  margin-bottom: 1em;
 }
 main.padded {
   padding: 0 1em;
