@@ -20,17 +20,9 @@
 .table .td a:hover {
   color: var(--link-color);
 }
-.table .number a {
+.table .date a {
   color: var(--text-color);
 }
-.easy {
-  color: var(--leetcode-easy);
-}
-.medium {
-  color: var(--leetcode-medium);
-}
-.hard {
-  color: var(--leetcode-hard);
-}
-.table .title {
+.table .location a {
+  color: var(--text-color);
 }

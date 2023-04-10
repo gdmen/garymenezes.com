@@ -38,7 +38,7 @@ const BjjTechnique = ({ number }) => {
     <div className={styles.technique}>
     {data.allMdx.edges.map(({ node }) => (
       node.frontmatter.number === number &&
-        <MDXRenderer frontmatter={node.frontmatter}>
+        <MDXRenderer key={node.id}  frontmatter={node.frontmatter}>
           {node.body}
         </MDXRenderer>
     ))}

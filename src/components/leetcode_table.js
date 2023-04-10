@@ -40,11 +40,14 @@ const LeetCodeTable = () => {
   `)
   return (
     <table className={styles.table}>
-      <tr className={styles.head}>
-        <th>#</th>
-        <th>Level</th>
-        <th>Name</th>
-      </tr>
+      <thead>
+        <tr className={styles.head}>
+          <th>#</th>
+          <th>Level</th>
+          <th>Name</th>
+        </tr>
+      </thead>
+      <tbody>
       {data.allMdx.edges.map(({ node }) => (
         <tr key={node.id} className={styles.row}>
           <td className={styles.number}>
@@ -65,11 +68,12 @@ const LeetCodeTable = () => {
               </span>
             </Link>
           </td>
-          <td className={styles.name}>
+          <td className={styles.title}>
             <Link to={node.fields.slug}>{node.frontmatter.title}</Link>
           </td>
         </tr>
       ))}
+      </tbody>
     </table>
   )
 }
