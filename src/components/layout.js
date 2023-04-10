@@ -7,6 +7,7 @@ import { MDXProvider } from "@mdx-js/react"
 import Header from "./header"
 
 import Citation from "./citation"
+import BjjTechnique from "./bjj_technique"
 import LeetCodeHeading from "./leetcode_heading"
 import LeetCodeTable from "./leetcode_table"
 import LinkOut from "./link_out"
@@ -17,6 +18,7 @@ import "./layout.css"
 
 const mdx_shortcodes = {
   Citation,
+  BjjTechnique,
   LeetCodeHeading,
   LeetCodeTable,
   Link,

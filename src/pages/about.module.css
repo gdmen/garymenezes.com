@@ -1,5 +1,5 @@
 .about_title {
-  border-bottom: 1px solid var(--secondary-bg-color);
+  border-bottom: 1px solid var(--line-color);
   margin-bottom: 0.5em;
   padding-bottom: 0.5em;
   text-align: center;

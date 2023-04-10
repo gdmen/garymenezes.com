@@ -1,6 +1,6 @@
 .toc {
   border-radius: 0.25em;
-  background-color: #fafafa;
+  background-color: var(--secondary-bg-color);
   margin-bottom: 1em;
 }
 .link {

@@ -21,7 +21,8 @@
   --page-max-width: 1200px;
   --page-min-width: 900px;
   --bg-color: white;
-  --secondary-bg-color: #e5e5e5;
+  --secondary-bg-color: #f2f2f2;
+  --line-color: #e5e5e5;
   --text-color: #505050;
   --secondary-text-color: #adadad;
   --link-color: #79B0CC;
@@ -31,6 +32,7 @@
   --header-font-family: Trebuchet, Verdana, sans-serif;
   --body-font-family: "Karla", Helvetica Neue, Helvetica, Arial, sans-serif;
   --linkedin-blue: #0A66C2;
+  --youtube-red: #ff0000;
   --leetcode-easy: #2f9c0a;
   --leetcode-medium: #e69e39;
   --leetcode-hard: #c92c2c;
@@ -43,6 +45,9 @@
 @import "../../node_modules/@fortawesome/fontawesome-free/css/solid.min.css";
 i.fa-linkedin {
   color: var(--linkedin-blue);
+}
+i.fa-youtube {
+  color: var(--youtube-red);
 }
 i.fa-github {
   color: black;

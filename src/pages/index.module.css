@@ -10,7 +10,7 @@
 }
 .colHeader {
   align-items: center;
-  border-bottom: 1px solid var(--secondary-bg-color);
+  border-bottom: 1px solid var(--line-color);
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-end;
