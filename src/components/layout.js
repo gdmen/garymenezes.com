@@ -8,6 +8,7 @@ import Header from "./header"
 
 import Citation from "./citation"
 import BjjTechnique from "./bjj_technique"
+import BjjTechniquesTable from "./bjj_techniques_table"
 import BjjLessonPlansTable from "./bjj_lesson_plans_table"
 import LeetCodeHeading from "./leetcode_heading"
 import LeetCodeTable from "./leetcode_table"
@@ -20,6 +21,7 @@ import "./layout.css"
 const mdx_shortcodes = {
   Citation,
   BjjTechnique,
+  BjjTechniquesTable,
   BjjLessonPlansTable,
   LeetCodeHeading,
   LeetCodeTable,
