@@ -6,11 +6,18 @@ module.exports = {
     description: `Where Gary writes things he wants people to know about.`,
     menu: [`blog`, `notes`, `projects`, `about`],
     title: `Gary Menezes`,
+    siteUrl: 'https://www.garymenezes.com',
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
+    {
+      resolve: `gatsby-plugin-robots-txt`,
+      options: {
+        policy: [{ userAgent: '*', disallow: ['/'] }]
+      }
+    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
