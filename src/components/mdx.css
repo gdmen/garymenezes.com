@@ -119,13 +119,15 @@ pre[class*="language-"] .line-numbers-rows {
   font-size: 1.25em;
 }
 .mdx ul {
-  list-style: disc inside none;
+  list-style: disc outside none;
+  margin-left: 1em;
 }
 .mdx li ul {
   margin-bottom: 0;
 }
 .mdx ol {
-  list-style: decimal inside none;
+  list-style: decimal outside none;
+  margin-left: 1em;
 }
 .mdx li li {
   margin-left: 1em;
