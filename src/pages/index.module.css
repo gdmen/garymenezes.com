@@ -43,29 +43,16 @@
 .blogHighlight .excerpt {
   color: var(--text-color);
 }
-.lcHighlight .lc {
+.noteHighlight .note {
   color: var(--text-color);
   display: block;
   padding: 0.5em 0;
 }
 @media only screen and (min-width: 768px) {
-  .lcHighlight .lc {
+  .noteHighlight .note {
     display: inline-block;
   }
 }
-.lcHighlight .lc:hover {
+.noteHighlight .note:hover {
   color: var(--link-hover-color);
-}
-.lcHighlight .difficulty {
-  font-size: 0.75em;
-  margin-left: 0.75em;
-}
-.easy {
-  color: var(--leetcode-easy);
-}
-.medium {
-  color: var(--leetcode-medium);
-}
-.hard {
-  color: var(--leetcode-hard);
 }

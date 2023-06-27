@@ -5,11 +5,9 @@ import SEO from "../components/seo"
 
 import styles from "./index.module.css"
 
-const difficultyText = { 0: "easy", 1: "medium", 2: "hard" }
-
 export default function Index({ data }) {
   const post = data.blog.edges[0].node
-  const lcs = data.leetcode.edges
+  const notes = data.notes.edges
   return (
     <Layout>
       <SEO title="home" />
@@ -26,28 +24,16 @@ export default function Index({ data }) {
             </div>
           </Link>
         </div>
-        <div className={styles.lcHighlight}>
+        <div className={styles.noteHighlight}>
           <div className={styles.colHeader}>
-            <h4>Recent LeetCode Solutions</h4>
-            <Link to="notes/leetcode">[ view all ]</Link>
+            <h4>Recent Notes</h4>
           </div>
-          {lcs.map(({ node }) => (
+          {notes.map(({ node }) => (
             <div>
-              <Link key={node.id} to={node.fields.slug} className={styles.lc}>
-                <div className={styles.date}>{node.frontmatter.date}</div>
+              <Link key={node.id} to={node.fields.slug} className={styles.note}>
+                <div className={styles.date}>{node.frontmatter.date} - {node.frontmatter.book}</div>
                 <h5 className={styles.title}>
                   {node.frontmatter.title}
-                  <span
-                    className={`${styles.difficulty} ${
-                      node.frontmatter.difficulty === 0
-                        ? styles.easy
-                        : node.frontmatter.difficulty === 1
-                        ? styles.medium
-                        : styles.hard
-                    }`}
-                  >
-                    {difficultyText[node.frontmatter.difficulty]}
-                  </span>
                 </h5>
               </Link>
             </div>
@@ -79,14 +65,13 @@ export const query = graphql`
         }
       }
     }
-    leetcode: allMdx(
+    notes: allMdx(
       limit: 5
       sort: { fields: [frontmatter___date], order: [DESC] }
       filter: {
         frontmatter: {
           draft: { ne: true }
           type: { eq: "note" }
-          book: { eq: "leetcode" }
         }
       }
     ) {
@@ -98,8 +83,8 @@ export const query = graphql`
           }
           frontmatter {
             date(formatString: "MMMM DD, YYYY")
-            difficulty
             title
+            book
           }
         }
       }
