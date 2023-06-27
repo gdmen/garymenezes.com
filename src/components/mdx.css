@@ -140,3 +140,18 @@ pre[class*="language-"] .line-numbers-rows {
 .mdx .text-right {
   text-align: right;
 }
+
+.mdx .flex-responsive {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+.mdx .flex-responsive div {
+  flex-basis: 30%;
+  flex-grow: 0;
+}
+@media (max-width: 800px) {
+  .mdx .flex-responsive {
+    flex-direction: column;
+  }
+}
