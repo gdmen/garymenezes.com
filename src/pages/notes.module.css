@@ -1,12 +1,13 @@
 .book_list {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  gap: 1em;
+  row-gap: 1em;
+  justify-content: start;
   list-style: none;
 }
 .book_list li {
   flex-basis: 10em;
-  padding-bottom: 1.5em;
 }
 .book {
   color: var(--text-color);
