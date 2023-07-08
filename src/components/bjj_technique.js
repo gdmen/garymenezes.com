@@ -35,7 +35,7 @@ const BjjTechnique = ({ number, brief=false }) => {
   `)
   // Doing an O(n) search here which is kinda dumb.
   return (
-    <div className={styles.technique}>
+    <div className={styles.technique} className="bordered">
     {data.allMdx.edges.map(({ node }) => (
       node.frontmatter.number === number &&
         ((

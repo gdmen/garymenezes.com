@@ -134,6 +134,12 @@ pre[class*="language-"] .line-numbers-rows {
   word-wrap: break-all;
 }
 /* utility classes */
+.mdx .bordered {
+  border: 0.125em solid var(--secondary-bg-color);
+  border-radius: 1em;
+  padding: 1em 1.5em;
+}
+
 .mdx .text-center {
   text-align: center;
 }
