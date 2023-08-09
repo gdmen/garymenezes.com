@@ -1,5 +1,9 @@
 const remarkMath = require(`remark-math`)
 
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
+
 module.exports = {
   siteMetadata: {
     author: `Gary`,
@@ -72,5 +76,13 @@ module.exports = {
         `,
       },
     },
+    {
+      resolve: '@mkitio/gatsby-theme-password-protect',
+      options: {
+        pagePaths: ['/notes/bjj-lesson-plans/', '/notes/bjj-techniques/'],
+        partialMatching: true,
+        password: process.env.BJJ_PASSWORD // delete or `undefined` to disable password protection
+      }
+    }
   ],
 }
