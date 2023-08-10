@@ -82,6 +82,14 @@ module.exports = {
         pagePaths: ['/notes/bjj-lesson-plans/', '/notes/bjj-techniques/'],
         partialMatching: true,
         password: process.env.BJJ_PASSWORD // delete or `undefined` to disable password protection
+      },
+    },
+    {
+      resolve: '@mkitio/gatsby-theme-password-protect',
+      options: {
+        pagePaths: ['/notes/climbing/journal'],
+        partialMatching: true,
+        password: process.env.JOURNAL_PASSWORD // delete or `undefined` to disable password protection
       }
     }
   ],
