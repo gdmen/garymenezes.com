@@ -52,6 +52,9 @@ i.fa-youtube {
 i.fa-github {
   color: black;
 }
+i.fa-dollar-sign {
+  color: var(--green);
+}
 
 /* garymenezes.com */
 .light-red {
