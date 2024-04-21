@@ -11,8 +11,9 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
       name: `slug`,
       value: slug,
     })
+
     // Add tags from file path. Attempt to order by importance.
-    var tags = slug.split("/").filter((x) => x.length > 0).slice(0,-1).reverse()
+    var tags = slug.split("/").filter((x) => x.length > 0).slice(0,-1)
     if (node?.frontmatter?.tags !== undefined) {
       tags = tags.concat(node.frontmatter.tags)
     }
@@ -29,7 +30,6 @@ exports.createPages = async ({ graphql, actions }) => {
           node {
             frontmatter {
               type
-              book
             }
             fields {
               slug
@@ -45,20 +45,10 @@ exports.createPages = async ({ graphql, actions }) => {
   }
 
   const edges = result.data.allMdx.edges
-  const posts = edges.filter(e => e.node.frontmatter.type === "post")
   const projects = edges.filter(e => e.node.frontmatter.type === "project")
   const notes = edges.filter(e =>
-    ["note", "book"].includes(e.node.frontmatter.type)
+    ["note", "post"].includes(e.node.frontmatter.type)
   )
-  posts.forEach(({ node }) => {
-    createPage({
-      path: node.fields.slug,
-      component: path.resolve("./src/templates/post.js"),
-      context: {
-        slug: node.fields.slug,
-      },
-    })
-  })
   projects.forEach(({ node }) => {
     createPage({
       path: node.fields.slug,
@@ -74,7 +64,6 @@ exports.createPages = async ({ graphql, actions }) => {
       component: path.resolve("./src/templates/note.js"),
       context: {
         slug: node.fields.slug,
-        book: node.frontmatter.book,
       },
     })
   })

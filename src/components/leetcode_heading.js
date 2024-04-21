@@ -5,25 +5,19 @@ import LinkOut from "./link_out"
 
 import styles from "./leetcode_heading.module.css"
 
-const difficultyText = { 0: "easy", 1: "medium", 2: "hard" }
-
-const LeetCodeHeading = ({ date, difficulty, number, title, url }) => (
+const LeetCodeHeading = ({ difficulty, url }) => (
   <div className={styles.heading}>
-    <h3 className={styles.title}>
-      LeetCode {number}. {title}
-    </h3>
-    <span className={styles.date}>{date}</span>
     <span className={styles.difficulty}>
       <span
         className={
-          difficulty === 0
+          difficulty === 'easy'
             ? styles.easy
-            : difficulty === 1
+            : difficulty === 'medium'
             ? styles.medium
             : styles.hard
         }
       >
-        {difficultyText[difficulty]}
+        {difficulty}
       </span>
     </span>
     <span className={styles.link}>
@@ -34,10 +28,7 @@ const LeetCodeHeading = ({ date, difficulty, number, title, url }) => (
 )
 
 LeetCodeHeading.propTypes = {
-  date: PropTypes.string.isRequired,
-  difficulty: PropTypes.number.isRequired,
-  number: PropTypes.number.isRequired,
-  title: PropTypes.string.isRequired,
+  difficulty: PropTypes.string.isRequired,
   url: PropTypes.string.isRequired,
 }
 

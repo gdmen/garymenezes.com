@@ -13,7 +13,7 @@ const BjjTechnique = ({ number, brief=false }) => {
           frontmatter: {
             draft: { ne: true }
             type: { eq: "note" }
-            book: { eq: "bjjtechniques" }
+            tags: { in: ["jiujitsu", "techniques"] }
           }
         }
       ) {
@@ -25,7 +25,6 @@ const BjjTechnique = ({ number, brief=false }) => {
             }
             body
             frontmatter {
-              number
               title
             }
           }
@@ -33,16 +32,26 @@ const BjjTechnique = ({ number, brief=false }) => {
       }
     }
   `)
+  let slug = "/jiujitsu/techniques/" + number + "/";
   // Doing an O(n) search here which is kinda dumb.
   return (
     <div className={styles.technique} className="bordered">
     {data.allMdx.edges.map(({ node }) => (
-      node.frontmatter.number === number &&
+        node.fields.slug === slug &&
         ((
           !brief &&
-          <MDXRenderer key={node.id}  frontmatter={node.frontmatter}>
-            {node.body}
-          </MDXRenderer>
+          <section key={node.id}>
+            <Link to={node.fields.slug}>
+              <h3>
+                <i className="fa fa-link"></i>
+                &nbsp;
+                {node.frontmatter.title}
+              </h3>
+            </Link>
+            <MDXRenderer key={node.id}  frontmatter={node.frontmatter}>
+              {node.body}
+            </MDXRenderer>
+          </section>
         ) || (
           brief &&
           <section key={node.id} className={styles.brief}>
@@ -61,7 +70,7 @@ const BjjTechnique = ({ number, brief=false }) => {
 }
 
 BjjTechnique.propTypes = {
-  number: PropTypes.number.isRequired,
+  number: PropTypes.string.isRequired,
 }
 
 export default BjjTechnique

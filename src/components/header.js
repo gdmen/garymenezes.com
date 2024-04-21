@@ -7,7 +7,7 @@ import styles from "./header.module.css"
 const Header = ({ page, metadata }) => {
   return (
     <header className={styles.header}>
-      <div className={styles.content}>
+      <div className={`${styles.content} readable`}>
         <Link to="/" className={styles.title}>
           {metadata.title}
         </Link>

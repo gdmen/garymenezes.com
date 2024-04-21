@@ -55,6 +55,9 @@ i.fa-github {
 i.fa-dollar-sign {
   color: var(--green);
 }
+i.fa-book {
+  color: #9f7431;
+}
 
 /* garymenezes.com */
 .light-red {

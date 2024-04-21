@@ -136,7 +136,7 @@ pre[class*="language-"] .line-numbers-rows {
 /* utility classes */
 .mdx .bordered {
   border: 0.125em solid var(--secondary-bg-color);
-  border-radius: 1em;
+  border-radius: 0.25em;
   padding: 1em 1.5em;
 }
 

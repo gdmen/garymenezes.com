@@ -8,7 +8,7 @@ module.exports = {
   siteMetadata: {
     author: `Gary`,
     description: `Where Gary writes things he wants people to know about.`,
-    menu: [`blog`, `notes`, `projects`, `about`],
+    menu: [`about`],
     title: `Gary Menezes`,
     siteUrl: 'https://www.garymenezes.com',
   },
@@ -37,7 +37,12 @@ module.exports = {
           default: require.resolve("./src/components/layout.js"),
         },
         gatsbyRemarkPlugins: [
-          `gatsby-remark-katex`,
+          {
+            resolve: `gatsby-remark-katex`,
+            options: {
+              strict: `ignore`,
+            },
+          },
           `gatsby-remark-embed-snippet`,
           `gatsby-remark-embed-video`,
           {
@@ -79,7 +84,7 @@ module.exports = {
     {
       resolve: '@mkitio/gatsby-theme-password-protect',
       options: {
-        pagePaths: ['/notes/climbing/journal'],
+        pagePaths: ['/climbing/journal'],
         partialMatching: true,
         password: process.env.JOURNAL_PASSWORD // delete or `undefined` to disable password protection
       }
