@@ -11,6 +11,12 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
       name: `slug`,
       value: slug,
     })
+    // Add tags from file path. Attempt to order by importance.
+    var tags = slug.split("/").filter((x) => x.length > 0).slice(0,-1).reverse()
+    if (node?.frontmatter?.tags !== undefined) {
+      tags = tags.concat(node.frontmatter.tags)
+    }
+    node.frontmatter.tags = tags
   }
 }
 
