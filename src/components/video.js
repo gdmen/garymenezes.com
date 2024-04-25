@@ -1,7 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 
-import styles from "./video.module.css"
+import * as styles from "./video.module.css"
 
 const Video = ({ src, title }) => (
   <video className={styles.video} controls>

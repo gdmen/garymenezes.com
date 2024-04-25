@@ -1,26 +1,23 @@
 import React from "react"
-import { MDXRenderer } from "gatsby-plugin-mdx"
 import { graphql } from "gatsby"
 import Layout from "../components/layout"
-import SEO from "../components/seo"
+import Seo from "../components/seo"
 
-import styles from "./note.module.css"
+import * as styles from "./note.module.css"
 
-export default function Note({ data }) {
+export default function Note({ data, location, children }) {
   const node = data.mdx
   return (
-    <Layout page="note">
-      <SEO title={node.frontmatter.title} />
+    <Layout path={location.pathname}>
+      <Seo title={node.frontmatter.title} />
       <div className="readable">
         <article className={styles.note}>
           <div className={styles.heading}>
             <h1 className={styles.title}>{node.frontmatter.title}</h1>
             <span className={styles.date}>{node.frontmatter.date}</span>
           </div>
-          <div className={`mdx`}>
-            <MDXRenderer frontmatter={node.frontmatter}>
-              {node.body}
-            </MDXRenderer>
+          <div className="mdx">
+            {children}
           </div>
         </article>
       </div>
@@ -31,7 +28,6 @@ export default function Note({ data }) {
 export const query = graphql`
   query($slug: String!) {
     mdx(fields: { slug: { eq: $slug } }) {
-      body
       frontmatter {
         date(formatString: "MMMM DD, YYYY")
         title

@@ -3,7 +3,7 @@ import { MDXRenderer } from "gatsby-plugin-mdx"
 import { graphql, Link, useStaticQuery } from "gatsby"
 import PropTypes from "prop-types"
 
-import styles from "./bjj_technique.module.css"
+import * as styles from "./bjj_technique.module.css"
 
 const BjjTechnique = ({ number, brief=false }) => {
   const data = useStaticQuery(graphql`
@@ -34,8 +34,9 @@ const BjjTechnique = ({ number, brief=false }) => {
   `)
   let slug = "/jiujitsu/techniques/" + number + "/";
   // Doing an O(n) search here which is kinda dumb.
+  // TODO: use data.allMdx.edges.filter instead of map
   return (
-    <div className={styles.technique} className="bordered">
+    <div className={`${styles.technique} bordered`}>
     {data.allMdx.edges.map(({ node }) => (
         node.fields.slug === slug &&
         ((
@@ -70,7 +71,7 @@ const BjjTechnique = ({ number, brief=false }) => {
 }
 
 BjjTechnique.propTypes = {
-  number: PropTypes.string.isRequired,
+  number: PropTypes.number.isRequired,
 }
 
 export default BjjTechnique

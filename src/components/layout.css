@@ -1,7 +1,5 @@
 @import "reset.css";
 @import "../../node_modules/katex/dist/katex.min.css";
-@import "../../node_modules/prismjs/themes/prism-coy.css";
-@import "../../node_modules/prismjs/plugins/line-numbers/prism-line-numbers.css";
 
 * {
   box-sizing: border-box;

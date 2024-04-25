@@ -29,10 +29,10 @@
 .menu {
   text-align: center;
 }
+.links {
+}
 .link {
   color: var(--text-color);
+  margin: 0 0.5em;
   text-decoration: none;
-}
-.selected {
-  color: var(--primary-color);
 }

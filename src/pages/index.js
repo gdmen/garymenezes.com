@@ -1,19 +1,19 @@
 import React, { useState } from "react"
 import { graphql, Link } from "gatsby"
 import Layout from "../components/layout"
-import SEO from "../components/seo"
+import Seo from "../components/seo"
 
-import styles from "./index.module.css"
+import * as styles from "./index.module.css"
 
-export default function Index({ data }) {
+export default function Index({ data, location }) {
   const mdx_nodes = data.mdx_nodes.edges || []
   const [state, setState] = useState({
-    query: "",
+    searchQ: "",
     filtered: mdx_nodes,
   })
 
   const handleQuery = event => {
-    const query = event.target.value
+    const searchQ = event.target.value
 
     const filtered = mdx_nodes.filter(({ node }) => {
       const body = node.body
@@ -25,21 +25,21 @@ export default function Index({ data }) {
         (tags && tags
           .join("")
           .toLowerCase()
-          .includes(query.toLowerCase()))
+          .includes(searchQ.toLowerCase()))
       )
     })
 
     setState({
-      query,
+      searchQ,
       filtered,
     })
   }
 
-  const { query, filtered } = state
+  const { filtered } = state
 
   return (
-    <Layout>
-      <SEO title="home" />
+    <Layout path={location.pathname}>
+      <Seo title="home" />
       <section className="readable">
       <div className={styles.search}>
         <i className="fa fa-search"></i>
@@ -61,7 +61,7 @@ export default function Index({ data }) {
                 {node.frontmatter.date}
               </span>
               <span className={styles.tags}>
-              {node.frontmatter.tags.map(tag => (
+              {node.fields.tags && node.fields.tags.map(tag => (
                 <span className={styles.tag}>#{tag}</span>
               ))}
               </span>
@@ -77,7 +77,7 @@ export default function Index({ data }) {
 export const query = graphql`
   query {
     mdx_nodes: allMdx(
-      sort: { fields: [frontmatter___date], order: [DESC] }
+      sort: {frontmatter: {date: DESC}}
       filter: {
         frontmatter: {
           draft: { ne: true }
@@ -91,11 +91,11 @@ export const query = graphql`
           body
           fields {
             slug
+            tags
           }
           frontmatter {
             date(formatString: "ll")
             title
-            tags
           }
         }
       }

@@ -1,10 +1,9 @@
-const path = require(`path`)
+const path = import(`path`)
 const { createFilePath } = require(`gatsby-source-filesystem`)
 
 exports.onCreateNode = ({ node, getNode, actions }) => {
   const { createNodeField } = actions
   if (node.internal.type === "Mdx") {
-    const fileNode = getNode(node.parent)
     const slug = createFilePath({ node, getNode })
     createNodeField({
       node,
@@ -17,12 +16,19 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
     if (node?.frontmatter?.tags !== undefined) {
       tags = tags.concat(node.frontmatter.tags)
     }
-    node.frontmatter.tags = tags
+    createNodeField({
+      node,
+      name: `tags`,
+      value: tags,
+    })
   }
 }
 
+
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
+  const projectTemplate = require.resolve("./src/templates/project.js")
+  const noteTemplate = require.resolve("./src/templates/note.js")
   const result = await graphql(`
     query {
       allMdx(filter: { frontmatter: { draft: { ne: true } } }) {
@@ -33,6 +39,10 @@ exports.createPages = async ({ graphql, actions }) => {
             }
             fields {
               slug
+              tags
+            }
+            internal {
+              contentFilePath
             }
           }
         }
@@ -52,7 +62,7 @@ exports.createPages = async ({ graphql, actions }) => {
   projects.forEach(({ node }) => {
     createPage({
       path: node.fields.slug,
-      component: path.resolve("./src/templates/project.js"),
+      component: `${projectTemplate}?__contentFilePath=${node.internal.contentFilePath}`,
       context: {
         slug: node.fields.slug,
       },
@@ -61,7 +71,7 @@ exports.createPages = async ({ graphql, actions }) => {
   notes.forEach(({ node }) => {
     createPage({
       path: node.fields.slug,
-      component: path.resolve("./src/templates/note.js"),
+      component: `${noteTemplate}?__contentFilePath=${node.internal.contentFilePath}`,
       context: {
         slug: node.fields.slug,
       },

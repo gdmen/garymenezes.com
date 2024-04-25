@@ -3,7 +3,7 @@ import PropTypes from "prop-types"
 
 import LinkOut from "./link_out"
 
-import styles from "./leetcode_heading.module.css"
+import * as styles from "./leetcode_heading.module.css"
 
 const LeetCodeHeading = ({ difficulty, url }) => (
   <div className={styles.heading}>

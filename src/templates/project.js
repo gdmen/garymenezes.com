@@ -1,17 +1,15 @@
 import React from "react"
-import { MDXRenderer } from "gatsby-plugin-mdx"
 import { graphql } from "gatsby"
 import Layout from "../components/layout"
-import SEO from "../components/seo"
+import Seo from "../components/seo"
 
-export default function Project({ data }) {
+export default function Project({ data, location, children }) {
+  const node = data.mdx
   return (
-    <Layout page="project" padded={false}>
-      <SEO title={data.mdx.frontmatter.title} />
+    <Layout padded={false} path={location.pathname}>
+      <Seo title={node.frontmatter.title} />
       <div className="mdx">
-        <MDXRenderer frontmatter={data.mdx.frontmatter}>
-          {data.mdx.body}
-        </MDXRenderer>
+        {children}
       </div>
     </Layout>
   )
@@ -20,7 +18,6 @@ export default function Project({ data }) {
 export const query = graphql`
   query($slug: String!) {
     mdx(fields: { slug: { eq: $slug } }) {
-      body
       frontmatter {
         title
         date(formatString: "MMMM DD, YYYY")

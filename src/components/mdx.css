@@ -2,16 +2,21 @@
 }
 
 /* Prismjs overrides */
-pre[class*="language-"]:before,
-pre[class*="language-"]:after {
-  display: none;
-}
 pre[class*="language-"] {
+  border-top: none;
+  border-bottom: none;
   font-size: 0.75em;
-}
-pre[class*="language-"] .line-numbers-rows {
-  line-height: 1.5em;
-  padding-left: 2em;
+  &:before, &:after {
+    box-shadow: none;
+  }
+  .line-numbers-rows {
+    line-height: 1.5em;
+    padding-left: 2em;
+    z-index: 1;
+  }
+  code {
+    box-shadow: none;
+  }
 }
 
 /* gatsby-remark-embed-video overrides */
@@ -103,8 +108,6 @@ pre[class*="language-"] .line-numbers-rows {
 }
 .mdx table {
   display: table;
-  margin-left: auto;
-  margin-right: auto;
   text-align: left;
 }
 .mdx table th,
