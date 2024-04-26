@@ -6,7 +6,7 @@ import { MDXProvider } from "@mdx-js/react"
 
 import * as styles from "./employment_block.module.css"
 
-const EmploymentBlock = ({ pathname, company, title, loc, start, end, image, children } ) => {
+const EmploymentBlock = ({ pathname, company, title, loc, start, end, image, children }) => {
   const data = useStaticQuery(graphql`
     query {
       allFile (
