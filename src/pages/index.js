@@ -6,7 +6,7 @@ import Seo from "../components/seo"
 import * as styles from "./index.module.css"
 
 export const Head = () => (
-  <Seo title="home" />
+  <Seo title="home | Gary Menezes" />
 )
 
 export default function Index({ data, location }) {
