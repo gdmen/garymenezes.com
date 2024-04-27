@@ -1,40 +1,30 @@
-/**
- * Seo component that queries for data with
- *  Gatsby's useStaticQuery React hook
- *
- * See: https://www.gatsbyjs.org/docs/use-static-query/
- */
-
 import React from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
 
-function Seo({ title }) {
-  const { site } = useStaticQuery(
-    graphql`
-      query {
-        site {
-          siteMetadata {
-            title
-          }
+function Seo({ title, children }) {
+  const { site } = useStaticQuery(graphql`
+    query {
+      site {
+        siteMetadata {
+          author
+          description
+          title
+          siteUrl
         }
       }
-    `
-  )
+    }
+  `)
 
-  // Short circuit to remove google analytics & to add do not scrape
+  title = title || site.siteMetadata.title
   return (
-    <div
-      title={title}
-      titleTemplate={`%s | ${site.siteMetadata.title}`}
-      meta={[
-        {
-          name: "robots",
-          content: "noindex",
-        },
-      ]}
-    >
-    </div>
+    <>
+      <title>{title}</title>
+      <meta name="description" content={site.siteMetadata.description} />
+      <meta name="twitter:title" content={site.siteMetadata.title} />
+      <meta name="twitter:description" content={site.siteMetadata.description} />
+      {children}
+    </>
   )
 }
 

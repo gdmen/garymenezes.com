@@ -5,6 +5,10 @@ import Seo from "../components/seo"
 
 import * as styles from "./index.module.css"
 
+export const Head = () => (
+  <Seo title="home" />
+)
+
 export default function Index({ data, location }) {
   const mdx_nodes = data.mdx_nodes.edges || []
   const [state, setState] = useState({
@@ -39,7 +43,6 @@ export default function Index({ data, location }) {
 
   return (
     <Layout path={location.pathname}>
-      <Seo title="home" />
       <section className="readable">
       <div className={styles.search}>
         <i className="fa fa-search"></i>

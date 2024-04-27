@@ -5,11 +5,17 @@ import Seo from "../components/seo"
 
 import * as styles from "./note.module.css"
 
+export const Head = ({ data }) => {
+  const node = data.mdx
+  return (
+    <Seo title={node.frontmatter.title} />
+  )
+}
+
 export default function Note({ data, location, children }) {
   const node = data.mdx
   return (
     <Layout path={location.pathname}>
-      <Seo title={node.frontmatter.title} />
       <div className="readable">
         <article className={styles.note}>
           <div className={styles.heading}>

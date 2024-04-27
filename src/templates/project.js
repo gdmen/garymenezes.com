@@ -3,11 +3,16 @@ import { graphql } from "gatsby"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 
-export default function Project({ data, location, children }) {
+export const Head = ({ data }) => {
   const node = data.mdx
   return (
+    <Seo title={node.frontmatter.title} />
+  )
+}
+
+export default function Project({ data, location, children }) {
+  return (
     <Layout padded={false} path={location.pathname}>
-      <Seo title={node.frontmatter.title} />
       <div className="mdx">
         {children}
       </div>
