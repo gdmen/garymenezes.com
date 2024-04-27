@@ -1,58 +1,64 @@
-@media only screen and (min-width: 768px) {
-  .cols {
-    column-gap: 5%;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-  }
-}
-.cols > div {
-  margin-bottom: 2em;
-}
-.colHeader {
-  align-items: center;
-  border-bottom: 1px solid var(--line-color);
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-end;
+.search {
   margin-bottom: 0.5em;
+  position: relative;
+  text-align: center;
 }
-.colHeader h4 {
-  flex-grow: 1;
-  font-weight: bold;
-  margin-bottom: 0.4em;
+.search i {
+  font-size: 1.25em;
+  padding: 0.45em;
+  color: var(--link-color);
+  position: absolute;
 }
-.colHeader a {
-  margin-bottom: 0.5em;
-}
-.blogHighlight .post {
-  color: var(--text-color);
-  display: block;
-  padding-top: 0.5em;
-}
-.blogHighlight .post:hover {
-  color: var(--link-hover-color);
-}
-.date {
+.search input {
+  border: 1px solid silver;
+  border-radius: 0.25em;
   color: var(--secondary-text-color);
-  font-size: 0.75em;
-  margin-bottom: 0.25em;
+  font-size: 1.25em;
+  padding: 0.25em;
+  padding-left: 1.75em;
+  width: 100%;
 }
-.title {
-  line-height: 1.5;
-}
-.blogHighlight .excerpt {
-  color: var(--text-color);
-}
-.noteHighlight .note {
-  color: var(--text-color);
-  display: block;
-  padding: 0.5em 0;
-}
-@media only screen and (min-width: 768px) {
-  .noteHighlight .note {
-    display: inline-block;
+article {
+  > a {
+    border-bottom: 1px solid var(--line-color);
+    padding: 0.75em 0;
+    color: var(--text-color);
+    display: block;
+    text-decoration: none;
+    &:hover {
+      color: var(--text-color);
+      .title {
+        color: var(--link-hover-color);
+      }
+    }
+  }
+  .title {
+  }
+  .meta {
+    color: var(--secondary-text-color);
+    font-size: 0.75em;
+    margin-top: 0.65em;
+    .date {
+    }
+    .tags {
+      margin-left: 0.5em;
+      .tag {
+        white-space: nowrap;
+        &+ .tag {
+          margin-left: 0.25em;
+        }
+      }
+    }
   }
 }
-.noteHighlight .note:hover {
-  color: var(--link-hover-color);
+
+@media only screen and (min-width: 768px) {
+  .search {
+    margin-bottom: 1.5em;
+  }
+  article {
+    > a {
+      border: none;
+    }
+  }
 }

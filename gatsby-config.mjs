@@ -1,45 +1,40 @@
-const remarkMath = require(`remark-math`)
+import remarkGfm from 'remark-gfm';
+import remarkMath from 'remark-math';
+import * as dotenv from 'dotenv'
 
-require("dotenv").config({
-  path: `.env.${process.env.NODE_ENV}`,
-})
+dotenv.config({ path: `.env.${process.env.NODE_ENV}` })
 
-module.exports = {
+const config = {
   siteMetadata: {
     author: `Gary`,
     description: `Where Gary writes things he wants people to know about.`,
-    menu: [`blog`, `notes`, `projects`, `about`],
     title: `Gary Menezes`,
     siteUrl: 'https://www.garymenezes.com',
   },
   plugins: [
-    `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
-    {
-      resolve: `gatsby-plugin-robots-txt`,
-      options: {
-        policy: [{ userAgent: '*', disallow: ['/'] }]
-      }
-    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `content`,
-        path: `${__dirname}/content`,
+        path: `./content`,
         ignore: [`**/\.*`, `**/*~`], // ignore files starting with a dot or ending with a ~
       },
     },
     {
       resolve: `gatsby-plugin-mdx`,
       options: {
-        defaultLayouts: {
-          default: require.resolve("./src/components/layout.js"),
-        },
         gatsbyRemarkPlugins: [
-          `gatsby-remark-katex`,
           `gatsby-remark-embed-snippet`,
           `gatsby-remark-embed-video`,
+          {
+            resolve: `gatsby-remark-katex`,
+            options: {
+              strict: `ignore`,
+            },
+          },
           {
             resolve: `gatsby-remark-images`,
             options: {
@@ -55,7 +50,12 @@ module.exports = {
             },
           },
         ],
-        remarkPlugins: [remarkMath],
+        mdxOptions: {
+          remarkPlugins: [
+            remarkGfm,
+            remarkMath
+          ],
+        },
       },
     },
     {
@@ -76,13 +76,8 @@ module.exports = {
         `,
       },
     },
-    {
-      resolve: '@mkitio/gatsby-theme-password-protect',
-      options: {
-        pagePaths: ['/notes/climbing/journal'],
-        partialMatching: true,
-        password: process.env.JOURNAL_PASSWORD // delete or `undefined` to disable password protection
-      }
-    }
   ],
 }
+
+
+export default config;

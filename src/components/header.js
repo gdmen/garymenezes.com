@@ -2,24 +2,30 @@ import React from "react"
 import { Link } from "gatsby"
 import PropTypes from "prop-types"
 
-import styles from "./header.module.css"
+import * as styles from "./header.module.css"
 
-const Header = ({ page, metadata }) => {
+const menu = {
+  "home": "",
+  "résumé": "resume",
+}
+
+const Header = ({ path, metadata }) => {
+  path = path.replace(/^\/|\/$/g, '')
   return (
     <header className={styles.header}>
-      <div className={styles.content}>
+      <div className={`${styles.content} readable`}>
         <Link to="/" className={styles.title}>
           {metadata.title}
         </Link>
         <div className={styles.menu}>
           <div className={styles.links}>
-            {metadata.menu.map(link => (
+            {Object.entries(menu).map(([name, link]) => (
               <Link
-                key={link}
+                key={name}
                 to={"/" + link}
-                className={`${styles.link} ${page === link && styles.selected}`}
+                className={styles.link}
               >
-                {link}
+                {name}
               </Link>
             ))}
           </div>
@@ -30,12 +36,8 @@ const Header = ({ page, metadata }) => {
 }
 
 Header.propTypes = {
-  page: PropTypes.string,
+  path: PropTypes.string.isRequired,
   metadata: PropTypes.object.isRequired,
-}
-
-Header.defaultProps = {
-  page: "",
 }
 
 export default Header

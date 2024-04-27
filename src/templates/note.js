@@ -1,68 +1,43 @@
 import React from "react"
-import { MDXRenderer } from "gatsby-plugin-mdx"
 import { graphql } from "gatsby"
 import Layout from "../components/layout"
-import SEO from "../components/seo"
-import BookTOC from "../components/book_toc"
+import Seo from "../components/seo"
 
-import styles from "./note.module.css"
+import * as styles from "./note.module.css"
 
-export default function Note({ data }) {
+export const Head = ({ data }) => {
+  const node = data.mdx
   return (
-    <Layout page="notes">
-      <SEO title={data.mdx.frontmatter.title} />
-      <div className={styles.book}>
-        {data.mdx.frontmatter.toc && (
-          <div className={styles.toc}>
-            <BookTOC edges={data.allMdx.edges} />
+    <Seo title={node.frontmatter.title} />
+  )
+}
+
+export default function Note({ data, location, children }) {
+  const node = data.mdx
+  return (
+    <Layout path={location.pathname}>
+      <div className="readable">
+        <article className={styles.note}>
+          <div className={styles.heading}>
+            <h1 className={styles.title}>{node.frontmatter.title}</h1>
+            <span className={styles.date}>{node.frontmatter.date}</span>
           </div>
-        )}
-        <div className={`${styles.note} mdx`}>
-          <MDXRenderer frontmatter={data.mdx.frontmatter}>
-            {data.mdx.body}
-          </MDXRenderer>
-        </div>
+          <div className="mdx">
+            {children}
+          </div>
+        </article>
       </div>
     </Layout>
   )
 }
 
 export const query = graphql`
-  query($slug: String!, $book: String!) {
+  query($slug: String!) {
     mdx(fields: { slug: { eq: $slug } }) {
-      body
       frontmatter {
-        authors
         date(formatString: "MMMM DD, YYYY")
-        difficulty
-        number
         title
-        subtitle
-        url
-        toc
-      }
-    }
-    allMdx(
-      sort: { fields: [frontmatter___number], order: ASC }
-      filter: {
-        frontmatter: {
-          draft: { ne: true }
-          type: { in: ["note", "book"] }
-          book: { eq: $book }
-        }
-      }
-    ) {
-      edges {
-        node {
-          id
-          fields {
-            slug
-          }
-          frontmatter {
-            number
-            title
-          }
-        }
+        tags
       }
     }
   }

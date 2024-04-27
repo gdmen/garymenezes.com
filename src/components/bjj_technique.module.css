@@ -1,6 +1,13 @@
 .technique section > :last-child {
   margin-bottom: 0;
 }
+.technique .title {
+  color: var(--text-color);
+}
+.technique .brief .title {
+  color: var(--link-color);
+}
 .technique .brief h3 {
   padding-bottom: 0;
 }
+

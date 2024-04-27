@@ -7,11 +7,9 @@ import { MDXProvider } from "@mdx-js/react"
 import Header from "./header"
 
 import Citation from "./citation"
+import EmploymentBlock from "./employment_block"
 import BjjTechnique from "./bjj_technique"
-import BjjTechniquesTable from "./bjj_techniques_table"
-import BjjLessonPlansTable from "./bjj_lesson_plans_table"
 import LeetCodeHeading from "./leetcode_heading"
-import LeetCodeTable from "./leetcode_table"
 import LinkOut from "./link_out"
 import Quotation from "./quotation"
 import Video from "./video"
@@ -20,23 +18,20 @@ import "./layout.css"
 
 const mdx_shortcodes = {
   Citation,
+  EmploymentBlock,
   BjjTechnique,
-  BjjTechniquesTable,
-  BjjLessonPlansTable,
   LeetCodeHeading,
-  LeetCodeTable,
   Link,
   LinkOut,
   Quotation,
   Video,
 }
 
-const Layout = ({ padded, page, children }) => {
+const Layout = ({ padded, path, children }) => {
   const data = useStaticQuery(graphql`
     query {
       site {
         siteMetadata {
-          menu
           title
         }
       }
@@ -44,7 +39,7 @@ const Layout = ({ padded, page, children }) => {
   `)
   return (
     <>
-      <Header page={page} metadata={data.site.siteMetadata} />
+      <Header path={path} metadata={data.site.siteMetadata} />
       <main className={padded ? "padded" : ""}>
         <MDXProvider components={mdx_shortcodes}>{children}</MDXProvider>
       </main>
@@ -55,13 +50,11 @@ const Layout = ({ padded, page, children }) => {
 
 Layout.propTypes = {
   padded: PropTypes.bool,
-  page: PropTypes.string,
-  children: PropTypes.node.isRequired,
+  path: PropTypes.string.isRequired,
 }
 
 Layout.defaultProps = {
   padded: true,
-  page: "",
 }
 
 export default Layout

@@ -1,38 +1,32 @@
 import React from "react"
 import { graphql, useStaticQuery } from "gatsby"
-import Img from "gatsby-image"
+import { GatsbyImage } from "gatsby-plugin-image";
 import PropTypes from "prop-types"
 
 import LinkOut from "./link_out"
 
-import styles from "./quotation.module.css"
+import * as styles from "./quotation.module.css"
 
 const Quotation = ({ children, author, context, highlight }) => {
-  const people = useStaticQuery(graphql`
-    query {
-      allMdx(
-        filter: { frontmatter: { draft: { ne: true }, type: { eq: "person" } } }
-      ) {
-        edges {
-          node {
-            id
-            frontmatter {
-              name
-              title
-              linkedin
-              image {
-                childImageSharp {
-                  fluid(maxWidth: 200) {
-                    ...GatsbyImageSharpFluid
-                  }
-                }
-              }
+  const people = useStaticQuery(graphql`{
+  allMdx(filter: {frontmatter: {draft: {ne: true}, type: {eq: "person"}}}) {
+    edges {
+      node {
+        id
+        frontmatter {
+          name
+          title
+          linkedin
+          image {
+            childImageSharp {
+              gatsbyImageData(width: 200, layout: CONSTRAINED)
             }
           }
         }
       }
     }
-  `)
+  }
+}`)
   let authorObj = {
     name: author,
   }
@@ -47,11 +41,10 @@ const Quotation = ({ children, author, context, highlight }) => {
         <div className={styles.author}>
           <div className={styles.headshot}>
             {authorObj.image && (
-              <Img
+              <GatsbyImage
+                image={authorObj.image.childImageSharp.gatsbyImageData}
                 className={styles.image}
-                fluid={authorObj.image.childImageSharp.fluid}
-                alt={`A photo of ${authorObj.name}`}
-              />
+                alt={`A photo of ${authorObj.name}`} />
             )}
           </div>
           {authorObj.linkedin && (
@@ -84,7 +77,7 @@ const Quotation = ({ children, author, context, highlight }) => {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 Quotation.propTypes = {

@@ -14,8 +14,6 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin: 0 auto;
-  max-width: var(--page-max-width);
   overflow: visible;
 }
 .title {
@@ -31,11 +29,10 @@
 .menu {
   text-align: center;
 }
+.links {
+}
 .link {
   color: var(--text-color);
-  margin: 0 1em;
+  margin: 0 0.5em;
   text-decoration: none;
-}
-.selected {
-  color: var(--primary-color);
 }

@@ -1,90 +1,104 @@
-import React from "react"
+import React, { useState } from "react"
 import { graphql, Link } from "gatsby"
 import Layout from "../components/layout"
-import SEO from "../components/seo"
+import Seo from "../components/seo"
 
-import styles from "./index.module.css"
+import * as styles from "./index.module.css"
 
-export default function Index({ data }) {
-  const post = data.blog.edges[0].node
-  const notes = data.notes.edges
+export const Head = () => (
+  <Seo title="home" />
+)
+
+export default function Index({ data, location }) {
+  const mdx_nodes = data.mdx_nodes.edges || []
+  const [state, setState] = useState({
+    searchQ: "",
+    filtered: mdx_nodes,
+  })
+
+  const handleQuery = event => {
+    const searchQ = event.target.value
+
+    const filtered = mdx_nodes.filter(({ node }) => {
+      const body = node.body
+      const tags = node.fields.tags
+      const title = node.frontmatter.title
+      return (
+        body.toLowerCase().includes(searchQ.toLowerCase()) ||
+        title.toLowerCase().includes(searchQ.toLowerCase()) ||
+        (tags && tags
+          .join("")
+          .toLowerCase()
+          .includes(searchQ.toLowerCase()))
+      )
+    })
+
+    setState({
+      searchQ,
+      filtered,
+    })
+  }
+
+  const { filtered } = state
+
   return (
-    <Layout>
-      <SEO title="home" />
-      <div className={styles.cols}>
-        <div className={styles.blogHighlight}>
-          <div className={styles.colHeader}>
-            <h4>Latest Post</h4>
-          </div>
-          <Link to={post.fields.slug} className={styles.post}>
-            <div className={styles.date}>{post.frontmatter.date}</div>
-            <h4 className={styles.title}>{post.frontmatter.title}</h4>
-            <div className="mdx">
-              <p className={styles.excerpt}>{post.excerpt}</p>
+    <Layout path={location.pathname}>
+      <section className="readable">
+      <div className={styles.search}>
+        <i className="fa fa-search"></i>
+        <input
+          type="text"
+          aria-label="search"
+          placeholder="search notes..."
+          onChange={handleQuery}
+        />
+      </div>
+      {filtered.map(({ node }) => (
+        <article>
+          <Link to={node.fields.slug}>
+            <h4 className={styles.title}>
+              {node.frontmatter.title}
+            </h4>
+            <div className={styles.meta}>
+              <span className={styles.date}>
+                {node.frontmatter.date}
+              </span>
+              <span className={styles.tags}>
+              {node.fields.tags && node.fields.tags.map(tag => (
+                <span className={styles.tag}>#{tag}</span>
+              ))}
+              </span>
             </div>
           </Link>
-        </div>
-        <div className={styles.noteHighlight}>
-          <div className={styles.colHeader}>
-            <h4>Recent Notes</h4>
-          </div>
-          {notes.map(({ node }) => (
-            <div>
-              <Link key={node.id} to={node.fields.slug} className={styles.note}>
-                <div className={styles.date}>{node.frontmatter.date} - {node.frontmatter.book}</div>
-                <h5 className={styles.title}>
-                  {node.frontmatter.title}
-                </h5>
-              </Link>
-            </div>
-          ))}
-        </div>
-      </div>
+        </article>
+        ))}
+      </section>
     </Layout>
   )
 }
 
 export const query = graphql`
   query {
-    blog: allMdx(
-      limit: 1
-      sort: { fields: [frontmatter___date], order: DESC }
-      filter: { frontmatter: { draft: { ne: true }, type: { eq: "post" } } }
-    ) {
-      edges {
-        node {
-          id
-          excerpt
-          fields {
-            slug
-          }
-          frontmatter {
-            date(formatString: "MMMM DD, YYYY")
-            title
-          }
-        }
-      }
-    }
-    notes: allMdx(
-      limit: 5
-      sort: { fields: [frontmatter___date], order: [DESC] }
+    mdx_nodes: allMdx(
+      sort: {frontmatter: {date: DESC}}
       filter: {
         frontmatter: {
           draft: { ne: true }
-          type: { eq: "note" }
+          type: { in: ["note", "post", "project"] }
         }
       }
     ) {
       edges {
         node {
           id
+          body
           fields {
             slug
+            tags
           }
           frontmatter {
-            date(formatString: "MMMM DD, YYYY")
+            date(formatString: "ll")
             title
-            book
           }
         }
       }
