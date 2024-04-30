@@ -21,7 +21,7 @@ function Seo({ title, children }) {
     <>
       <title>{title}</title>
       <meta name="description" content={site.siteMetadata.description} />
-      <meta name="twitter:title" content={site.siteMetadata.title} />
+      <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={site.siteMetadata.description} />
       {children}
     </>
