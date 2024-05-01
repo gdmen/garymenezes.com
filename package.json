@@ -12,6 +12,7 @@
     "gatsby-plugin-image": "^3.13.1",
     "gatsby-plugin-mdx": "^5.13.1",
     "gatsby-plugin-prefetch-google-fonts": "^1.4.3",
+    "gatsby-plugin-robots-txt": "^1.8.0",
     "gatsby-plugin-sharp": "^5.13.1",
     "gatsby-remark-embed-snippet": "^8.13.1",
     "gatsby-remark-embed-video": "^3.2.1",
