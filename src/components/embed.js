@@ -3,16 +3,20 @@ import { graphql, Link, useStaticQuery } from "gatsby"
 import PropTypes from "prop-types"
 import { MDXProvider } from "@mdx-js/react"
 
-import * as styles from "./bjj_technique.module.css"
+import * as styles from "./embed.module.css"
 
-const BjjTechnique = ({ number, brief=false, children }) => {
+
+function get_trimmed_path(path) {
+  return path.split('/').filter(x => x).join('/')
+}
+
+const Embed = ({ slug, brief=false, children }) => {
   const data = useStaticQuery(graphql`
     query {
       allMdx(
         filter: {
           frontmatter: {
             draft: { ne: true }
-            type: { eq: "note" }
           }
         }
       ) {
@@ -30,22 +34,21 @@ const BjjTechnique = ({ number, brief=false, children }) => {
       }
     }
   `)
-  let slug = "/jiujitsu/techniques/" + number + "/";
   // Doing an O(n) search here which is kinda dumb.
-  let technique
+  let embed
   data.allMdx.edges.map(({node}) => {
-    if (node.fields.slug === slug) {
-      technique = node
+    if (get_trimmed_path(node.fields.slug) === get_trimmed_path(slug)) {
+      embed = node
     }
   })
   return (
-    <div className={`${styles.technique} bordered`}>
+    <div className={`${styles.embed} bordered`}>
       {(
         !brief &&
-        <section key={technique.id}>
-          <Link to={technique.fields.slug} className={styles.title}>
+        <section key={embed.id}>
+          <Link to={embed.fields.slug} className={styles.title}>
             <h3>
-              {technique.frontmatter.title}
+              {embed.frontmatter.title}
             </h3>
           </Link>
           <div className="mdx">
@@ -54,12 +57,12 @@ const BjjTechnique = ({ number, brief=false, children }) => {
         </section>
       ) || (
         brief &&
-        <section key={technique.id} className={styles.brief}>
-          <Link to={technique.fields.slug} className={styles.title}>
+        <section key={embed.id} className={styles.brief}>
+          <Link to={embed.fields.slug} className={styles.title}>
             <h3>
               <i className="fa fa-link"></i>
               &nbsp;
-              {technique.frontmatter.title}
+              {embed.frontmatter.title}
             </h3>
           </Link>
         </section>
@@ -68,8 +71,8 @@ const BjjTechnique = ({ number, brief=false, children }) => {
   )
 }
 
-BjjTechnique.propTypes = {
-  number: PropTypes.number.isRequired,
+Embed.propTypes = {
+  slug: PropTypes.string.isRequired,
 }
 
-export default BjjTechnique
+export default Embed

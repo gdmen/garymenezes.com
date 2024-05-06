@@ -1,13 +1,13 @@
-.technique section > :last-child {
+.embed section > :last-child {
   margin-bottom: 0;
 }
-.technique .title {
+.embed .title {
   color: var(--text-color);
 }
-.technique .brief .title {
+.embed .brief .title {
   color: var(--link-color);
 }
-.technique .brief h3 {
+.embed .brief h3 {
   padding-bottom: 0;
 }
 

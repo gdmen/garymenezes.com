@@ -8,7 +8,7 @@ import Header from "./header"
 
 import Citation from "./citation"
 import EmploymentBlock from "./employment_block"
-import BjjTechnique from "./bjj_technique"
+import Embed from "./embed"
 import LeetCodeHeading from "./leetcode_heading"
 import LinkOut from "./link_out"
 import Quotation from "./quotation"
@@ -19,7 +19,7 @@ import "./layout.css"
 const mdx_shortcodes = {
   Citation,
   EmploymentBlock,
-  BjjTechnique,
+  Embed,
   LeetCodeHeading,
   Link,
   LinkOut,
