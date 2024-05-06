@@ -26,7 +26,7 @@ const config = {
     {
       resolve: `gatsby-plugin-mdx`,
       options: {
-        extensions: [`.mdx`, `.md`],
+        extensions: [`.mdx`],
         gatsbyRemarkPlugins: [
           `gatsby-remark-embed-snippet`,
           `gatsby-remark-embed-video`,
