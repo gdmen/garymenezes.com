@@ -9,6 +9,9 @@
   flex-wrap: wrap;
   justify-content: center;
   line-height: 1.25em;
+  &:has(+.quotation) {
+    margin-bottom: 0;
+  }
 }
 .highlight .author {
   font-size: var(--hl-author-x);

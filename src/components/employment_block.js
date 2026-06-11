@@ -4,9 +4,11 @@ import PropTypes from "prop-types"
 import { getImage, GatsbyImage } from "gatsby-plugin-image";
 import { MDXProvider } from "@mdx-js/react"
 
+import LinkOut from "./link_out"
+
 import * as styles from "./employment_block.module.css"
 
-const EmploymentBlock = ({ pathname, company, title, loc, start, end, image, children }) => {
+const EmploymentBlock = ({ pathname, company, title, loc, start, end, image, link, children }) => {
   const data = useStaticQuery(graphql`
     query {
       allFile (
@@ -36,18 +38,23 @@ const EmploymentBlock = ({ pathname, company, title, loc, start, end, image, chi
       gatsbyImage = getImage(node)
     }
   })
+  const logo = image !== null ? (
+    <GatsbyImage
+      image={gatsbyImage}
+      className={styles.image}
+      alt={company} />
+  ) : (
+    <h2 className={styles.image}>{company}</h2>
+  )
   return (
     <div id={company.replace(/\s+/g, "")} className={styles.employment}>
       <div className={styles.heading}>
         <div className={styles.htop}>
           <span className={styles.line}></span>
-          {image !== null ? (
-            <GatsbyImage
-              image={gatsbyImage}
-              className={styles.image}
-              alt={company} />
+          {link ? (
+            <LinkOut to={link}>{logo}</LinkOut>
           ) : (
-            <h2 className={styles.image}>{company}</h2>
+            logo
           )}
           <span className={styles.line}></span>
         </div>
@@ -73,10 +80,12 @@ EmploymentBlock.propTypes = {
   start: PropTypes.string.isRequired,
   end: PropTypes.string,
   image: PropTypes.string,
+  link: PropTypes.string,
 }
 
 EmploymentBlock.defaultTypes = {
   image: null,
+  link: null,
 }
 
 export default EmploymentBlock
