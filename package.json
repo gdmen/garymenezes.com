@@ -6,6 +6,7 @@
   "author": "Gary Menezes",
   "dependencies": {
     "@fortawesome/fontawesome-free": "5.14.0",
+    "dotenv": "^8.6.0",
     "gatsby": "^5.13.4",
     "gatsby-plugin-google-fonts": "^1.0.1",
     "gatsby-plugin-htaccess": "^1.4.0",
