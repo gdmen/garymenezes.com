@@ -1,4 +1,4 @@
-// One-way content pipeline: Obsidian .md sources in content/ -> .mdx build
+// One-way content pipeline: .md sources from CONTENT_DIR -> .mdx build
 // artifacts in _generated/ (gitignored). Pass order in hydrate() is
 // load-bearing: full embeds are inlined before the brief-link and
 // internal-link passes so links inside inlined bodies get hydrated too.
@@ -6,9 +6,9 @@ import fs from 'node:fs'
 import path from 'node:path'
 import { pathToFileURL } from 'node:url'
 
-const VAULT_PREFIX = 'Atlas/Notes/Ideas/garymenezes.com_content/'
-const SRC_DIR = 'content'
 const OUT_DIR = '_generated'
+
+const srcDir = (root) => path.resolve(root, process.env.CONTENT_DIR || 'content')
 
 const IGNORED_DIRS = new Set(['__pycache__'])
 const IGNORED_FILES = [/\.pyc$/, /~$/, /\.swp$/, /\.mdx$/]
@@ -23,31 +23,31 @@ const RE_EMBED = /!\[\[([^\]]+)\]\]/g
 const RE_EMBED_BRIEF = /\[\[([^\]]+)\]\]/g
 const RE_FRONTMATTER = /^\s*---(?:(?!---)[\s\S])+---\s*/
 const escapeRegExp = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
-const RE_INTERNAL_LINK = new RegExp(
-  String.raw`\[[^\]]+\](\(` + escapeRegExp(VAULT_PREFIX) + String.raw`[^)]+\))`,
-  'g'
-)
 
 // String.replaceAll with a string replacement interprets $-patterns ($$, $&),
 // which would corrupt note content containing math; split/join replaces every
 // occurrence literally.
 const replaceAllLiteral = (s, find, repl) => s.split(find).join(repl)
 
-function hydrate(text, readEmbed) {
+function hydrate(text, readEmbed, linkPrefix) {
+  const reInternalLink = new RegExp(
+    String.raw`\[[^\]]+\](\(` + escapeRegExp(linkPrefix) + String.raw`[^)]+\))`,
+    'g'
+  )
   for (const m of [...text.matchAll(RE_BORDERED)]) {
     const body = '<div class="bordered">\n' + replaceAllLiteral(m[1], '\n> ', '\n') + '\n\n</div>'
     text = replaceAllLiteral(text, m[0], body)
   }
   for (const m of [...text.matchAll(RE_EMBED)]) {
-    const slug = replaceAllLiteral(m[1], VAULT_PREFIX, '')
+    const slug = replaceAllLiteral(m[1], linkPrefix, '')
     text = replaceAllLiteral(text, m[0], '<Embed slug={"' + slug + '"}>\n\n' + readEmbed(slug) + '\n</Embed>')
   }
   for (const m of [...text.matchAll(RE_EMBED_BRIEF)]) {
-    const slug = replaceAllLiteral(m[1], VAULT_PREFIX, '')
+    const slug = replaceAllLiteral(m[1], linkPrefix, '')
     text = replaceAllLiteral(text, m[0], '<Embed slug={"' + slug + '"} brief={true}></Embed>')
   }
-  for (const m of [...text.matchAll(RE_INTERNAL_LINK)]) {
-    text = replaceAllLiteral(text, m[1], replaceAllLiteral(m[1], VAULT_PREFIX, '/'))
+  for (const m of [...text.matchAll(reInternalLink)]) {
+    text = replaceAllLiteral(text, m[1], replaceAllLiteral(m[1], linkPrefix, '/'))
   }
   return text
 }
@@ -74,12 +74,25 @@ function pruneEmptyDirs(dir, keep) {
 }
 
 export function hydrateAll(root = process.cwd()) {
-  const src = path.join(root, SRC_DIR)
+  const src = srcDir(root)
   const out = path.join(root, OUT_DIR)
 
-  const srcFiles = [...walk(src)]
+  // The path prefix used by in-note links/embeds; stripped (or mapped to /)
+  // during hydration. An empty value would corrupt output, so require it.
+  const linkPrefix = process.env.OBSIDIAN_LINK_PREFIX
+  if (!linkPrefix) {
+    throw new Error(`OBSIDIAN_LINK_PREFIX not set — add it to .env.<NODE_ENV>`)
+  }
+
+  let srcFiles
+  try {
+    srcFiles = [...walk(src)]
+  } catch (err) {
+    if (err.code !== 'ENOENT') throw err
+    srcFiles = []
+  }
   if (!srcFiles.some((rel) => rel.endsWith('.md'))) {
-    throw new Error(`no .md files found in ${src} — is the content submodule initialized?`)
+    throw new Error(`no .md files found in ${src} — set CONTENT_DIR in .env.<NODE_ENV> or clone the content repo at ./content`)
   }
 
   fs.mkdirSync(out, { recursive: true })
@@ -110,7 +123,7 @@ export function hydrateAll(root = process.cwd()) {
   for (const rel of srcFiles) {
     const srcPath = path.join(src, rel)
     if (rel.endsWith('.md')) {
-      const buf = Buffer.from(hydrate(fs.readFileSync(srcPath, 'utf8'), readEmbed))
+      const buf = Buffer.from(hydrate(fs.readFileSync(srcPath, 'utf8'), readEmbed, linkPrefix))
       const dest = path.join(out, rel.slice(0, -3) + '.mdx')
       if (fs.existsSync(dest) && buf.equals(fs.readFileSync(dest))) continue
       fs.mkdirSync(path.dirname(dest), { recursive: true })
@@ -139,7 +152,7 @@ export function hydrateAll(root = process.cwd()) {
 
 export async function watch(root = process.cwd()) {
   const { default: chokidar } = await import('chokidar')
-  const src = path.join(root, SRC_DIR)
+  const src = srcDir(root)
   let timer = null
   const run = () => {
     try {
@@ -174,10 +187,12 @@ export async function watch(root = process.cwd()) {
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  const { default: dotenv } = await import('dotenv')
+  dotenv.config({ path: `.env.${process.env.NODE_ENV || 'development'}` })
   const { files, written, removed } = hydrateAll()
   console.log(`hydrate: ${files} file(s), ${written} written, ${removed} removed`)
   if (process.argv.includes('--watch')) {
     await watch()
-    console.log('hydrate: watching content/ for changes')
+    console.log(`hydrate: watching ${srcDir(process.cwd())} for changes`)
   }
 }

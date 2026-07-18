@@ -1,5 +1,6 @@
 # Sensitive files
 deploy.mk
+.env.development
 .env.production
 
 # Editor files
@@ -33,8 +34,11 @@ node_modules/
 .cache/
 public
 
-# Generated content (hydrated from content/*.md by scripts/hydrate.mjs)
+# Generated content (hydrated from CONTENT_DIR/*.md by scripts/hydrate.mjs)
 _generated/
+
+# Optional local clone of the content repo (default CONTENT_DIR)
+/content/
 
 # Mac files
 .DS_Store

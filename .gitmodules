@@ -1,5 +1,0 @@
-[submodule "content"]
-	path = content
-	url = https://github.com/gdmen/garymenezes.com_content.git
-	branch = master
-	update = rebase
