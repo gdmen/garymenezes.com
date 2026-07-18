@@ -33,6 +33,9 @@ node_modules/
 .cache/
 public
 
+# Generated content (hydrated from content/*.md by scripts/hydrate.mjs)
+_generated/
+
 # Mac files
 .DS_Store
 .gstack/

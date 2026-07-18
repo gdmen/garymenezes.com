@@ -1,6 +1,14 @@
 const path = import(`path`)
 const { createFilePath } = require(`gatsby-source-filesystem`)
 
+exports.onPreBootstrap = async () => {
+  const { hydrateAll, watch } = await import(`./scripts/hydrate.mjs`)
+  hydrateAll(__dirname)
+  if (process.env.gatsby_executing_command === `develop`) {
+    await watch(__dirname)
+  }
+}
+
 exports.onCreateNode = ({ node, getNode, actions }) => {
   const { createNodeField } = actions
   if (node.internal.type === "Mdx") {

@@ -26,6 +26,7 @@
     "unist-util-visit": "^2.0.3"
   },
   "devDependencies": {
+    "chokidar": "^3.6.0",
     "prettier": "2.1.2"
   },
   "keywords": [
@@ -34,12 +35,13 @@
   "license": "MIT",
   "scripts": {
     "postinstall": "patch-package",
+    "hydrate": "node scripts/hydrate.mjs",
     "build": "gatsby build",
     "develop": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
     "start": "npm run develop",
     "serve": "gatsby serve",
-    "clean": "gatsby clean",
+    "clean": "gatsby clean && rm -rf _generated",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
   },
   "repository": {

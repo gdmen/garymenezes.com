@@ -19,7 +19,7 @@ const config = {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `content`,
-        path: `./content`,
+        path: `./_generated`,
         ignore: [`**/\.*`, `**/*~`], // ignore files starting with a dot or ending with a ~
       },
     },
