@@ -3,6 +3,7 @@ develop:
 
 clean:
 	gatsby clean
+	rm -rf _generated
 
 build:
 	gatsby build
