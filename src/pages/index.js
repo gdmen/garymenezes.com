@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import { graphql, Link } from "gatsby"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
@@ -31,6 +31,13 @@ const NoteArticle = ({ node }) => (
   </article>
 )
 
+const NoteRow = ({ node }) => (
+  <Link to={node.fields.slug} className={styles.row}>
+    <span className={styles.rowTitle}>{node.frontmatter.title}</span>
+    <span className={styles.rowDate}>{node.frontmatter.monthYear}</span>
+  </Link>
+)
+
 const CollectionCard = ({ collection, notes }) => (
   <div className={styles.card}>
     <div className={styles.cardHead}>
@@ -43,10 +50,7 @@ const CollectionCard = ({ collection, notes }) => (
     </div>
     <div className={styles.cardBody}>
       {notes.slice(0, CARD_MAX).map(node => (
-        <Link to={node.fields.slug} className={styles.row} key={node.fields.slug}>
-          <span className={styles.rowTitle}>{node.frontmatter.title}</span>
-          <span className={styles.rowDate}>{node.frontmatter.monthYear}</span>
-        </Link>
+        <NoteRow node={node} key={node.fields.slug} />
       ))}
     </div>
     {notes.length > CARD_MAX && (
@@ -70,6 +74,18 @@ export default function Index({ data, location }) {
   const findCollection = slug =>
     collections.find(c => slug.startsWith(`/${c.dir}/`))
   const [searchQ, setSearchQ] = useState("")
+  const [searchOpen, setSearchOpen] = useState(false)
+  const searchRef = useRef(null)
+
+  useEffect(() => {
+    const onMouseDown = event => {
+      if (searchRef.current && !searchRef.current.contains(event.target)) {
+        setSearchOpen(false)
+      }
+    }
+    document.addEventListener("mousedown", onMouseDown)
+    return () => document.removeEventListener("mousedown", onMouseDown)
+  }, [])
 
   const q = searchQ.toLowerCase()
   const matches = nodes.filter(node =>
@@ -89,35 +105,50 @@ export default function Index({ data, location }) {
   return (
     <Layout path={location.pathname}>
       <section className="readable">
-      <div className={styles.search}>
+      <div
+        className={styles.search}
+        ref={searchRef}
+        onKeyDown={event => event.key === "Escape" && setSearchOpen(false)}
+      >
         <i className="fa fa-search"></i>
         <input
           type="text"
+          role="combobox"
           aria-label="search"
+          aria-expanded={searchOpen && !!searchQ}
           placeholder="search notes..."
-          onChange={event => setSearchQ(event.target.value)}
+          value={searchQ}
+          onChange={event => {
+            setSearchQ(event.target.value)
+            setSearchOpen(true)
+          }}
+          onFocus={() => setSearchOpen(true)}
+          onClick={() => setSearchOpen(true)}
         />
+        {searchOpen && searchQ && (
+          <div className={styles.results}>
+            {matches.length ? (
+              matches.map(node => <NoteRow node={node} key={node.id} />)
+            ) : (
+              <div className={styles.noResults}>no matches</div>
+            )}
+          </div>
+        )}
       </div>
-      {searchQ ? (
-        matches.map(node => <NoteArticle node={node} key={node.id} />)
-      ) : (
-        <>
-          <div className={styles.kicker}>writing &amp; projects</div>
-          <div className={styles.writing}>
-            {writing.map(node => <NoteArticle node={node} key={node.id} />)}
-          </div>
-          <div className={styles.kicker}>notes</div>
-          <div className={styles.cards}>
-            {cards.map(({ collection, notes }) => (
-              <CollectionCard
-                collection={collection}
-                notes={notes}
-                key={collection.dir}
-              />
-            ))}
-          </div>
-        </>
-      )}
+      <div className={styles.kicker}>writing &amp; projects</div>
+      <div className={styles.writing}>
+        {writing.map(node => <NoteArticle node={node} key={node.id} />)}
+      </div>
+      <div className={styles.kicker}>notes</div>
+      <div className={styles.cards}>
+        {cards.map(({ collection, notes }) => (
+          <CollectionCard
+            collection={collection}
+            notes={notes}
+            key={collection.dir}
+          />
+        ))}
+      </div>
       </section>
     </Layout>
   )
