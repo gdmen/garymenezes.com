@@ -31,9 +31,16 @@ const NoteArticle = ({ node }) => (
   </article>
 )
 
-const NoteRow = ({ node }) => (
+const NoteRow = ({ node, showTags }) => (
   <Link to={node.fields.slug} className={styles.row}>
     <span className={styles.rowTitle}>{node.frontmatter.title}</span>
+    {showTags && node.fields.tags && (
+      <span className={styles.rowTags}>
+        {node.fields.tags.map(tag => (
+          <span className={styles.tag} key={tag}>#{tag}</span>
+        ))}
+      </span>
+    )}
     <span className={styles.rowDate}>{node.frontmatter.monthYear}</span>
   </Link>
 )
@@ -128,7 +135,7 @@ export default function Index({ data, location }) {
         {searchOpen && searchQ && (
           <div className={styles.results}>
             {matches.length ? (
-              matches.map(node => <NoteRow node={node} key={node.id} />)
+              matches.map(node => <NoteRow node={node} showTags key={node.id} />)
             ) : (
               <div className={styles.noResults}>no matches</div>
             )}
