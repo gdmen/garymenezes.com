@@ -5,6 +5,7 @@ deploy.mk
 
 # Editor files
 *.swp
+.claude/
 
 # Python build files
 __pycache__/
