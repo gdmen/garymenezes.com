@@ -1,5 +1,5 @@
 .search {
-  margin-bottom: 0.5em;
+  margin-bottom: 2.5em;
   position: relative;
   text-align: center;
 }
@@ -51,14 +51,106 @@ article {
     }
   }
 }
+.kicker {
+  border-bottom: 1px solid var(--line-color);
+  color: var(--secondary-text-color);
+  font-family: var(--header-font-family);
+  font-size: 0.8em;
+  letter-spacing: 0.12em;
+  margin-bottom: 0.4em;
+  padding-bottom: 0.3em;
+  text-transform: uppercase;
+}
+.writing {
+  margin-bottom: 2.5em;
+}
+.cards {
+  display: grid;
+  gap: 1em;
+  grid-template-columns: 1fr;
+  align-items: start;
+}
+.card {
+  border: 1px solid var(--line-color);
+  border-radius: 0.4em;
+}
+.cardHead {
+  align-items: baseline;
+  display: flex;
+  gap: 0.55em;
+  padding: 0.7em 0.9em 0.5em;
+  h2 {
+    font-size: 1.05em;
+    white-space: nowrap;
+  }
+}
+.dot {
+  align-self: center;
+  border-radius: 50%;
+  flex: none;
+  height: 0.5em;
+  width: 0.5em;
+}
+.count {
+  color: var(--secondary-text-color);
+  font-size: 0.72em;
+  white-space: nowrap;
+}
+.cardBody {
+  border-top: 1px solid var(--line-color);
+  padding: 0.35em 0.9em 0.45em;
+}
+.row {
+  align-items: center;
+  border-bottom: 1px solid var(--secondary-bg-color);
+  color: var(--text-color);
+  display: flex;
+  font-size: 0.85em;
+  gap: 0.7em;
+  line-height: 1.4;
+  padding: 0.34em 0;
+  &:last-child {
+    border-bottom: none;
+  }
+  &:hover .rowTitle {
+    color: var(--link-hover-color);
+  }
+  .rowTitle {
+    flex: 1 1 auto;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .rowDate {
+    color: var(--secondary-text-color);
+    flex: none;
+    font-size: 0.82em;
+  }
+}
+.cardFoot {
+  border-top: 1px solid var(--line-color);
+  display: flex;
+  font-size: 0.8em;
+  justify-content: space-between;
+  padding: 0.5em 0.9em;
+  .cardFootPath {
+    color: var(--secondary-text-color);
+  }
+}
 
 @media only screen and (min-width: 768px) {
-  .search {
-    margin-bottom: 1.5em;
-  }
   article {
     > a {
       border: none;
     }
+  }
+  .writing {
+    display: grid;
+    gap: 0 2em;
+    grid-template-columns: 1fr 1fr;
+  }
+  .cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
