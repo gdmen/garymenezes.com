@@ -6,6 +6,7 @@ clean:
 	rm -rf _generated
 
 build:
+	@if [ -d .cache/develop-html ]; then gatsby clean; fi
 	gatsby build
 
 serve:
