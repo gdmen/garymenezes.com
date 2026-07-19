@@ -1,0 +1,95 @@
+.crumb {
+  color: var(--secondary-text-color);
+  font-size: 0.8em;
+  margin-bottom: 0.6em;
+  a {
+    color: var(--secondary-text-color);
+    &:hover {
+      color: var(--link-hover-color);
+    }
+  }
+}
+.heading {
+  align-items: baseline;
+  display: flex;
+  gap: 0.6em;
+  margin-bottom: 1.6em;
+  h1 {
+    font-size: 2em;
+  }
+}
+.dot {
+  align-self: center;
+  border-radius: 50%;
+  flex: none;
+  height: 0.55em;
+  width: 0.55em;
+}
+.count {
+  color: var(--secondary-text-color);
+  font-size: 0.75em;
+  margin-left: 0.4em;
+  white-space: nowrap;
+}
+.group {
+  margin-bottom: 1.6em;
+  h2 {
+    border-bottom: 1px solid var(--line-color);
+    font-size: 1.15em;
+    margin-bottom: 0.3em;
+    padding-bottom: 0.25em;
+    text-transform: capitalize;
+  }
+}
+.row {
+  align-items: baseline;
+  border-bottom: 1px solid var(--secondary-bg-color);
+  color: var(--text-color);
+  display: flex;
+  font-size: 0.9em;
+  gap: 0.65rem;
+  padding: 0.4em 0;
+  &:last-child {
+    border-bottom: none;
+  }
+  &:hover .title {
+    color: var(--link-hover-color);
+  }
+  .title {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+  .tags {
+    color: var(--secondary-text-color);
+    flex: none;
+    font-size: 0.78em;
+    span {
+      margin-left: 0.4em;
+      white-space: nowrap;
+    }
+  }
+  .date {
+    color: var(--secondary-text-color);
+    flex: none;
+    font-size: 0.78em;
+    text-align: right;
+    width: 4.7rem;
+  }
+}
+.headerRow {
+  border-bottom: 1px solid var(--line-color);
+  color: var(--secondary-text-color);
+  font-size: 0.75em;
+  &:hover .title {
+    color: var(--secondary-text-color);
+  }
+}
+.easy {
+  color: var(--leetcode-easy);
+}
+.medium {
+  color: var(--leetcode-medium);
+}
+.hard {
+  color: var(--leetcode-hard);
+}

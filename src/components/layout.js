@@ -27,7 +27,7 @@ const mdx_shortcodes = {
   Video,
 }
 
-const Layout = ({ padded, path, children }) => {
+const Layout = ({ padded = true, path, children }) => {
   const data = useStaticQuery(graphql`
     query {
       site {
@@ -51,10 +51,6 @@ const Layout = ({ padded, path, children }) => {
 Layout.propTypes = {
   padded: PropTypes.bool,
   path: PropTypes.string.isRequired,
-}
-
-Layout.defaultProps = {
-  padded: true,
 }
 
 export default Layout
