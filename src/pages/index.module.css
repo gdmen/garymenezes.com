@@ -1,7 +1,14 @@
+.overlay {
+  background: rgba(255, 255, 255, 0.75);
+  inset: 0;
+  position: fixed;
+  z-index: 5;
+}
 .search {
   margin-bottom: 2.5em;
   position: relative;
   text-align: center;
+  z-index: 10;
 }
 .search i {
   font-size: 1.25em;
@@ -30,7 +37,7 @@
   position: absolute;
   right: 0;
   text-align: left;
-  top: calc(100% + 0.35em);
+  top: 100%;
   z-index: 10;
 }
 .noResults {

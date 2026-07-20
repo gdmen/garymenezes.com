@@ -94,6 +94,8 @@ export default function Index({ data, location }) {
     return () => document.removeEventListener("mousedown", onMouseDown)
   }, [])
 
+  const resultsOpen = searchOpen && !!searchQ
+
   const q = searchQ.toLowerCase()
   const matches = nodes.filter(node =>
     node.body.toLowerCase().includes(q) ||
@@ -112,6 +114,7 @@ export default function Index({ data, location }) {
   return (
     <Layout path={location.pathname}>
       <section className="readable">
+      {resultsOpen && <div className={styles.overlay}></div>}
       <div
         className={styles.search}
         ref={searchRef}
@@ -122,7 +125,7 @@ export default function Index({ data, location }) {
           type="text"
           role="combobox"
           aria-label="search"
-          aria-expanded={searchOpen && !!searchQ}
+          aria-expanded={resultsOpen}
           placeholder="search notes..."
           value={searchQ}
           onChange={event => {
@@ -132,7 +135,7 @@ export default function Index({ data, location }) {
           onFocus={() => setSearchOpen(true)}
           onClick={() => setSearchOpen(true)}
         />
-        {searchOpen && searchQ && (
+        {resultsOpen && (
           <div className={styles.results}>
             {matches.length ? (
               matches.map(node => <NoteRow node={node} showTags key={node.id} />)
