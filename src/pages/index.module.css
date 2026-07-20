@@ -19,11 +19,14 @@
 .search input {
   border: 1px solid silver;
   border-radius: 0.25em;
-  color: var(--secondary-text-color);
+  color: var(--text-color);
   font-size: 1.25em;
   padding: 0.25em;
   padding-left: 1.75em;
   width: 100%;
+  &::placeholder {
+    color: var(--secondary-text-color);
+  }
 }
 .results {
   background: var(--bg-color);
