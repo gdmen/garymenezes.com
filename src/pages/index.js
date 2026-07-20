@@ -11,6 +11,39 @@ export const Head = () => (
 
 const CARD_MAX = 5
 
+const TITLE_WEIGHT = 4
+const TAG_WEIGHT = 2
+const BODY_WEIGHT = 1
+
+const tokenize = query => query.toLowerCase().split(/\s+/).filter(Boolean)
+
+// Every token must match somewhere; a node's score sums its tokens' field weights.
+const scoreNode = (node, tokens) => {
+  const title = node.frontmatter.title.toLowerCase()
+  const tags = (node.fields.tags || []).map(tag => tag.toLowerCase())
+  const body = node.body.toLowerCase()
+  let score = 0
+  for (const token of tokens) {
+    let tokenScore = 0
+    if (title.includes(token)) tokenScore += TITLE_WEIGHT
+    if (tags.some(tag => tag.includes(token))) tokenScore += TAG_WEIGHT
+    if (body.includes(token)) tokenScore += BODY_WEIGHT
+    if (!tokenScore) return 0
+    score += tokenScore
+  }
+  return score
+}
+
+const searchNodes = (nodes, query) => {
+  const tokens = tokenize(query)
+  if (!tokens.length) return []
+  return nodes
+    .map(node => ({ node, score: scoreNode(node, tokens) }))
+    .filter(({ score }) => score > 0)
+    .sort((a, b) => b.score - a.score)
+    .map(({ node }) => node)
+}
+
 const NoteArticle = ({ node }) => (
   <article>
     <Link to={node.fields.slug}>
@@ -96,12 +129,7 @@ export default function Index({ data, location }) {
 
   const resultsOpen = searchOpen && !!searchQ
 
-  const q = searchQ.toLowerCase()
-  const matches = nodes.filter(node =>
-    node.body.toLowerCase().includes(q) ||
-    node.frontmatter.title.toLowerCase().includes(q) ||
-    (node.fields.tags && node.fields.tags.join("").toLowerCase().includes(q))
-  )
+  const matches = searchNodes(nodes, searchQ)
 
   const writing = nodes.filter(node => !findCollection(node.fields.slug))
   const cards = collections
